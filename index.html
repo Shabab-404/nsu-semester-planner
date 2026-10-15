@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>রিটেক নিতে চাই না — NSU Academic Planner</title>
 
-<!-- Import Lexend Font, Bengali Font (Now with bold 700/800 weights), and Pacifico -->
+<!-- Import Lexend Font, Bengali Font, and Pacifico -->
 <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;500;700;800&family=Lexend:wght@300;400;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- Mobile Touch Drag & Drop Polyfill -->
+<script src="https://cdn.jsdelivr.net/npm/drag-drop-touch@1.0.2/DragDropTouch.min.js"></script>
 
 <style>
 * {
@@ -79,14 +82,8 @@ h1, h2, h3, .logo, .dept-btn {
 }
 
 @keyframes float-up {
-    0% { 
-        transform: translateY(0) scale(1) translateX(0); 
-        opacity: 1; 
-    }
-    100% { 
-        transform: translateY(-100vh) scale(0.2) translateX(20px); 
-        opacity: 0; 
-    }
+    0% { transform: translateY(0) scale(1) translateX(0); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(0.2) translateX(20px); opacity: 0; }
 }
 
 /* ---------- PERFECTED VOLCANIC BOX STYLING ---------- */
@@ -120,45 +117,39 @@ h1, h2, h3, .logo, .dept-btn {
     z-index: 0;
 }
 
-.fluid-box:hover::before {
-    opacity: 1;
-}
+.fluid-box:hover::before { opacity: 1; }
 
 .fluid-box > * {
     position: relative;
     z-index: 1;
 }
 
-/* ---------- FLOATING GITHUB STAR BUTTON ---------- */
+/* ---------- SLEEK CIRCULAR GITHUB BUTTON ---------- */
 .github-floating-btn {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 25px;
+    right: 25px;
     z-index: 9999;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 24px;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
     background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: #000 !important;
-    font-family: "Lexend", sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    text-decoration: none;
-    border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(255, 69, 0, 0.6);
+    border-radius: 50%; /* Perfect Circle */
+    box-shadow: 0 10px 25px rgba(255, 69, 0, 0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .github-floating-btn:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(255, 170, 0, 0.8);
+    box-shadow: 0 15px 35px rgba(255, 170, 0, 0.8);
 }
 
 .github-floating-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
     fill: #000;
 }
 
@@ -185,14 +176,8 @@ h1, h2, h3, .logo, .dept-btn {
     text-shadow: 0 0 30px rgba(255, 69, 0, 0.5);
 }
 
-#deptModal h1 .bengali-text {
-    font-weight: 700; 
-}
-
-#deptModal h1 span {
-    color: var(--accent);
-    font-weight: 800; 
-}
+#deptModal h1 .bengali-text { font-weight: 700; }
+#deptModal h1 span { color: var(--accent); font-weight: 800; }
 
 #deptModal p {
     color: var(--muted);
@@ -221,9 +206,7 @@ h1, h2, h3, .logo, .dept-btn {
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-.dept-btn:hover {
-    color: var(--primary);
-}
+.dept-btn:hover { color: var(--primary); }
 
 /* ---------- WATERMARK ---------- */
 .watermark {
@@ -256,13 +239,8 @@ nav {
     -webkit-backdrop-filter: blur(20px);
 }
 
-.logo {
-    font-size: 25px;
-}
-
-.logo span {
-    color: var(--accent);
-}
+.logo { font-size: 25px; }
+.logo span { color: var(--accent); }
 
 .nav-links {
     display: flex;
@@ -278,9 +256,7 @@ nav {
     font-weight: 400;
 }
 
-.nav-links a:hover {
-    color: var(--primary);
-}
+.nav-links a:hover { color: var(--primary); }
 
 /* ---------- HERO ---------- */
 .hero {
@@ -306,9 +282,7 @@ nav {
     margin-bottom: 10px;
 }
 
-.hero h1 span {
-    color: var(--accent);
-}
+.hero h1 span { color: var(--accent); }
 
 .hero p {
     max-width: 720px;
@@ -316,6 +290,14 @@ nav {
     color: var(--muted);
     line-height: 1.7;
     font-size: 16.5px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .primary-btn {
@@ -331,120 +313,37 @@ nav {
 }
 
 /* ---------- CONTAINER ---------- */
-.container {
-    width: min(1200px, 90%);
-    margin: auto;
-}
+.container { width: min(1200px, 90%); margin: auto; }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.section-title h2 {
-    font-size: 28px;
-}
-
-.section-title p {
-    color: var(--muted);
-    margin-top: 7px;
-}
+.section-title { text-align: center; margin-bottom: 25px; }
+.section-title h2 { font-size: 28px; }
+.section-title p { color: var(--muted); margin-top: 7px; }
 
 /* ---------- READ ME ---------- */
-.readme-section {
-    margin-bottom: 70px;
-    border-radius: 12px; 
-    padding: 30px 40px;
-}
-
-.readme-section ol {
-    color: var(--muted);
-    line-height: 1.8;
-    margin-left: 20px;
-    font-size: 15px;
-}
-
-.readme-section li {
-    margin-bottom: 10px;
-}
-
-.readme-section strong {
-    color: var(--primary);
-    font-weight: 500;
-}
+.readme-section { margin-bottom: 70px; border-radius: 12px; padding: 30px 40px; }
+.readme-section ol { color: var(--muted); line-height: 1.8; margin-left: 20px; font-size: 15px; }
+.readme-section li { margin-bottom: 10px; }
+.readme-section strong { color: var(--primary); font-weight: 500; }
 
 /* ---------- REQUIREMENTS SUMMARY ---------- */
-.requirements {
-    margin-bottom: 80px;
-}
-
-.req-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-.req-card {
-    padding: 20px;
-    border-radius: 12px; 
-}
-
-.req-card h3 {
-    font-size: 15px;
-}
-
-.req-card p {
-    color: var(--muted);
-    margin-top: 8px;
-    line-height: 1.5;
-    font-size: 13px;
-}
-
-.req-number {
-    margin-top: 14px;
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--primary);
-}
+.requirements { margin-bottom: 80px; }
+.req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.req-card { padding: 20px; border-radius: 12px; }
+.req-card h3 { font-size: 15px; }
+.req-card p { color: var(--muted); margin-top: 8px; line-height: 1.5; font-size: 13px; }
+.req-number { margin-top: 14px; font-size: 24px; font-weight: 500; color: var(--primary); }
 
 /* ---------- COURSE AREA ---------- */
-.course-section {
-    margin-bottom: 70px;
-}
-
-.filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 22px;
-}
-
+.course-section { margin-bottom: 70px; }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
 .filter-btn {
-    padding: 9px 14px;
-    border-radius: 8px; 
-    color: var(--muted);
-    font-family: inherit;
-    font-weight: 400;
-    cursor: pointer;
+    padding: 9px 14px; border-radius: 8px; color: var(--muted);
+    font-family: inherit; font-weight: 400; cursor: pointer;
 }
+.filter-btn.active, .filter-btn:hover { color: #000; border-color: var(--accent); background: var(--primary); }
 
-.filter-btn.active, .filter-btn:hover {
-    color: #000;
-    border-color: var(--accent);
-    background: var(--primary);
-}
-
-.course-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-}
-
-.course-card {
-    padding: 18px;
-    min-height: 140px;
-    cursor: pointer;
-}
+.course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.course-card { padding: 18px; min-height: 140px; cursor: pointer; }
 
 .course-card.completed {
     border-color: var(--primary) !important;
@@ -452,151 +351,42 @@ nav {
 }
 
 .course-card.completed::after {
-    content: "✓";
-    position: absolute;
-    right: 15px;
-    top: 12px;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #000;
-    background: var(--primary);
-    font-weight: 900;
-    z-index: 2;
+    content: "✓"; position: absolute; right: 15px; top: 12px;
+    width: 25px; height: 25px; display: flex; align-items: center;
+    justify-content: center; border-radius: 50%; color: #000;
+    background: var(--primary); font-weight: 900; z-index: 2;
 }
 
-.course-code {
-    color: var(--accent);
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.course-name {
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.35;
-}
-
-.course-credit {
-    margin-top: 13px;
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.lab-note {
-    color: var(--primary);
-}
+.course-code { color: var(--accent); font-size: 15px; font-weight: 500; }
+.course-name { margin-top: 8px; font-size: 16px; font-weight: 400; line-height: 1.35; }
+.course-credit { margin-top: 13px; color: var(--muted); font-size: 13px; }
+.lab-note { color: var(--primary); }
 
 /* ---------- SPECIALIZED ELECTIVES ---------- */
-.elective-panel {
-    margin-top: 25px;
-    padding: 25px;
-}
+.elective-panel { margin-top: 25px; padding: 25px; }
+.elective-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 18px; }
+.elective-header h3 { font-size: 21px; }
+.elective-header p { color: var(--muted); font-size: 13px; margin-top: 5px; }
+.elective-status { color: var(--primary); font-weight: 500; }
+.elective-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.elective-slot { padding: 17px; background: rgba(255, 170, 0, 0.02); }
+.slot-number { color: var(--primary); font-size: 12px; font-weight: 500; }
+.slot-name { margin-top: 8px; font-weight: 400; }
+.slot-credit { color: var(--muted); font-size: 12px; margin-top: 7px; }
 
-.elective-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 18px;
-}
+.elective-options { margin-top: 25px; }
+.specialized-note { background: rgba(255, 69, 0, 0.05); border-left: 3px solid var(--accent); padding: 18px 20px; margin-bottom: 25px; border-radius: 6px; }
+.specialized-note h2 { color: var(--accent); font-size: 18px; letter-spacing: 0px; margin-bottom: 6px; }
+.specialized-note p { color: var(--text); font-size: 14px; line-height: 1.5; }
 
-.elective-header h3 {
-    font-size: 21px;
-}
-
-.elective-header p {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 5px;
-}
-
-.elective-status {
-    color: var(--primary);
-    font-weight: 500;
-}
-
-.elective-slots {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-.elective-slot {
-    padding: 17px;
-    background: rgba(255, 170, 0, 0.02);
-}
-
-.slot-number {
-    color: var(--primary);
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.slot-name {
-    margin-top: 8px;
-    font-weight: 400;
-}
-
-.slot-credit {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 7px;
-}
-
-.elective-options {
-    margin-top: 25px;
-}
-
-.specialized-note {
-    background: rgba(255, 69, 0, 0.05);
-    border-left: 3px solid var(--accent);
-    padding: 18px 20px;
-    margin-bottom: 25px;
-    border-radius: 6px;
-}
-
-.specialized-note h2 {
-    color: var(--accent);
-    font-size: 18px;
-    letter-spacing: 0px;
-    margin-bottom: 6px;
-}
-
-.specialized-note p {
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.track {
-    margin-bottom: 18px;
-}
-
-.track-title {
-    color: var(--primary);
-    margin-bottom: 9px;
-    font-weight: 500;
-}
-
-.elective-option-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 9px;
-}
+.track { margin-bottom: 18px; }
+.track-title { color: var(--primary); margin-bottom: 9px; font-weight: 500; }
+.elective-option-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
 
 .elective-option {
-    display: flex;
-    align-items: flex-start;
-    gap: 9px;
-    padding: 12px 35px 12px 12px; 
-    background: var(--card2);
-    cursor: pointer;
-    user-select: none;
+    display: flex; align-items: flex-start; gap: 9px;
+    padding: 12px 35px 12px 12px; background: var(--card2);
+    cursor: pointer; user-select: none;
 }
 
 .elective-option.selected {
@@ -605,256 +395,71 @@ nav {
 }
 
 .elective-option.selected::after {
-    content: "✓";
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--primary);
-    font-weight: 500;
-    font-size: 16px;
-    z-index: 2;
+    content: "✓"; position: absolute; right: 12px; top: 50%;
+    transform: translateY(-50%); color: var(--primary);
+    font-weight: 500; font-size: 16px; z-index: 2;
 }
 
-.elective-option div {
-    line-height: 1.35;
-    font-size: 13px;
-}
-
-.elective-option small {
-    display: block;
-    color: var(--muted);
-    margin-top: 4px;
-}
+.elective-option div { line-height: 1.35; font-size: 13px; }
+.elective-option small { display: block; color: var(--muted); margin-top: 4px; }
 
 /* ---------- PLANNER CONTROLS ---------- */
-.planner {
-    margin-bottom: 80px;
-}
-
-.planner-controls {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 15px;
-}
-
+.planner { margin-bottom: 80px; }
+.planner-controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
 .planner-controls select, .retake-controls select {
-    padding: 12px 15px;
-    border-radius: 8px; 
-    color: var(--text);
-    font-family: inherit;
-    font-weight: 300;
+    padding: 12px 15px; border-radius: 8px; color: var(--text);
+    font-family: inherit; font-weight: 300; background: var(--card2);
+    border: 1px solid var(--line);
 }
-
-.retake-controls {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
+.retake-controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; }
 .retake-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    background: rgba(255, 0, 0, 0.1);
-    border-color: var(--danger);
-    font-size: 13px;
-    color: var(--danger);
-    margin: 0 8px 15px 0;
-    border-radius: 20px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
+    background: rgba(255, 0, 0, 0.1); border-color: var(--danger);
+    font-size: 13px; color: var(--danger); margin: 0 8px 15px 0; border-radius: 20px;
 }
-
-.retake-badge button {
-    background: none;
-    border: none;
-    color: var(--danger);
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    margin-top: -2px;
-}
+.retake-badge button { background: none; border: none; color: var(--danger); cursor: pointer; font-weight: bold; font-size: 16px; margin-top: -2px; }
 
 /* ---------- FIXED TABLE ALIGNMENT ---------- */
-.rds-wrapper {
-    background: transparent;
-    padding: 10px 0;
-}
-
-.semester-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.rds-sem-block {
-    display: block;
-    width: 100%;
-    border-radius: 12px; 
-}
-
-.rds-sem-title {
-    text-align: center;
-    font-weight: 400;
-    font-size: 16px;
-    margin-bottom: 12px;
-    padding-top: 15px;
-    color: var(--primary);
-    letter-spacing: 1px;
-}
+.rds-wrapper { background: transparent; padding: 10px 0; }
+.semester-list { display: flex; flex-direction: column; gap: 20px; }
+.rds-sem-block { display: block; width: 100%; border-radius: 12px; }
+.rds-sem-title { text-align: center; font-weight: 400; font-size: 16px; margin-bottom: 12px; padding-top: 15px; color: var(--primary); letter-spacing: 1px; }
 
 .semester-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--rds-table-bg);
-    font-size: 14px;
-    border: 1px solid var(--rds-border);
-    table-layout: fixed; 
+    width: 100%; border-collapse: collapse; background: var(--rds-table-bg);
+    font-size: 14px; border: 1px solid var(--rds-border); table-layout: fixed; 
 }
+.semester-table th { background: var(--rds-header); border-bottom: 1px solid var(--rds-border); padding: 12px 15px; font-weight: 500; color: var(--accent); }
+.semester-table td { padding: 12px 15px; border-bottom: 1px solid var(--rds-border); color: var(--text); }
+.semester-table tr:last-child td { border-bottom: none; }
 
-.semester-table th {
-    background: var(--rds-header);
-    border-bottom: 1px solid var(--rds-border);
-    padding: 12px 15px;
-    font-weight: 500;
-    color: var(--accent);
-}
+.plan-course { cursor: grab; cursor: -webkit-grab; transition: background 0.2s; touch-action: none; }
+.plan-course:active { cursor: grabbing; cursor: -webkit-grabbing; }
+.plan-course:hover { background-color: rgba(255, 170, 0, 0.08); }
 
-.semester-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid var(--rds-border);
-    color: var(--text);
-}
+.check-icon { color: var(--primary); font-weight: bold; font-size: 16px; }
+.delete-icon { color: var(--danger); font-weight: bold; font-size: 16px; cursor: pointer; }
+.delete-icon:hover { transform: scale(1.2); }
+.fee-row td { padding: 14px 15px; border-top: 1px solid var(--rds-border); background: var(--rds-header); color: var(--text); }
 
-.semester-table tr:last-child td {
-    border-bottom: none;
-}
-
-.plan-course {
-    cursor: grab;
-    transition: background 0.2s;
-}
-
-.plan-course:hover {
-    background-color: rgba(255, 170, 0, 0.08);
-}
-
-.check-icon {
-    color: var(--primary); 
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.delete-icon {
-    color: var(--danger);
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.delete-icon:hover {
-    transform: scale(1.2);
-}
-
-.fee-row td {
-    padding: 14px 15px;
-    border-top: 1px solid var(--rds-border);
-    background: var(--rds-header);
-    color: var(--text);
-}
-
-.rds-actions-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background: transparent;
-    padding: 15px;
-}
-
-.rds-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.rds-btn {
-    padding: 8px 18px;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 400;
-    cursor: pointer;
-    color: var(--primary);
-}
-
-.rds-btn:hover {
-    color: #000;
-    background: var(--primary) !important;
-}
+.rds-actions-container { display: flex; justify-content: flex-start; align-items: center; background: transparent; padding: 15px; }
+.rds-buttons { display: flex; gap: 8px; }
+.rds-btn { padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 400; cursor: pointer; color: var(--primary); }
+.rds-btn:hover { color: #000; background: var(--primary) !important; }
 
 /* ---------- DASHBOARD ---------- */
-.dashboard {
-    margin-bottom: 70px;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-}
-
-.stat {
-    padding: 22px;
-}
-
-.stat-label {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.stat-value {
-    margin-top: 8px;
-    font-size: 30px;
-    font-weight: 500;
-    color: var(--primary);
-}
-
-.progress-wrap {
-    margin-top: 20px;
-    padding: 18px;
-}
-
-.progress-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.progress {
-    height: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent), var(--primary));
-    border-radius: inherit;
-    transition: width .5s ease;
-}
+.dashboard { margin-bottom: 70px; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.stat { padding: 22px; }
+.stat-label { color: var(--muted); font-size: 13px; }
+.stat-value { margin-top: 8px; font-size: 30px; font-weight: 500; color: var(--primary); }
+.progress-wrap { margin-top: 20px; padding: 18px; }
+.progress-info { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--muted); font-size: 13px; }
+.progress { height: 10px; background: rgba(255, 255, 255, 0.05); border-radius: 999px; overflow: hidden; }
+.progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: inherit; transition: width .5s ease; }
 
 /* ---------- FOOTER ---------- */
-footer {
-    text-align: center;
-    padding: 35px 20px;
-    color: var(--muted);
-    border-top: 1px solid var(--line);
-    font-size: 13px;
-}
+footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width: 900px) {
@@ -871,11 +476,12 @@ footer {
     .dept-btn { width: 100%; }
     .rds-actions-container { flex-direction: column; gap: 10px; align-items: flex-start; }
     .github-floating-btn {
-        bottom: 15px;
-        right: 15px;
-        padding: 12px 18px;
-        font-size: 14px;
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
     }
+    .github-floating-btn svg { width: 24px; height: 24px; }
 }
 </style>
 </head>
@@ -885,10 +491,9 @@ footer {
 <!-- PURE CSS FIRE BACKGROUND ANIMATION -->
 <div id="fire-container"></div>
 
-<!-- MASSIVE FLOATING GITHUB BUTTON (Always Visible) -->
-<a href="https://github.com/shabab-404/nsu-semester-planner" target="_blank" class="github-floating-btn" onclick="playClickSound()">
+<!-- SMALL CIRCULAR FLOATING GITHUB BUTTON -->
+<a href="https://github.com/shabab-404/nsu-semester-planner" target="_blank" class="github-floating-btn" aria-label="Star on GitHub" onclick="playClickSound()">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-    Star on GitHub
 </a>
 
 <!-- DEPARTMENT SELECTION MODAL -->
@@ -926,9 +531,11 @@ footer {
             Your academic companion for tracking completed courses,
             understanding your degree progress and planning the semesters ahead.
         </p>
-        <button class="primary-btn fluid-box" onclick="document.getElementById('readme').scrollIntoView({behavior:'smooth'})">
-            Start Planning →
-        </button>
+        <div class="hero-buttons">
+            <button class="primary-btn fluid-box" onclick="document.getElementById('readme').scrollIntoView({behavior:'smooth'})">
+                Start Planning →
+            </button>
+        </div>
     </section>
 
     <main class="container">
@@ -1134,13 +741,13 @@ footer {
 <!-- SCRIPTS AREA                               -->
 <!-- ========================================== -->
 
-<!-- Main Logic Script -->
 <script>
 /* =========================================================
    CUSTOM SOUND ENGINE (WEB AUDIO API)
    ========================================================= */
 let audioCtx = null;
 
+// Initialize Audio on first user interaction (Browser security requirement)
 document.addEventListener('click', () => {
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1160,7 +767,8 @@ function playHoverSound() {
     osc.frequency.setValueAtTime(120, audioCtx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.1);
     
-    gain.gain.setValueAtTime(0.02, audioCtx.currentTime); 
+    // INCREASED VOLUME: From 0.02 to 0.1
+    gain.gain.setValueAtTime(0.1, audioCtx.currentTime); 
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
     
     osc.start();
@@ -1178,7 +786,8 @@ function playClickSound() {
     osc.frequency.setValueAtTime(800, audioCtx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(1400, audioCtx.currentTime + 0.05);
     
-    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+    // INCREASED VOLUME: From 0.05 to 0.2
+    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
     
     osc.start();
@@ -1196,7 +805,8 @@ function playSuccessSound() {
     osc.frequency.setValueAtTime(440, audioCtx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
     
-    gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+    // INCREASED VOLUME: From 0.06 to 0.3
+    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
     gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.3);
     
     osc.start();
