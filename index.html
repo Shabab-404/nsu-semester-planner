@@ -129,6 +129,35 @@ h1, h2, h3, .logo, .dept-btn {
     z-index: 1;
 }
 
+/* ---------- GITHUB STAR BUTTON ---------- */
+.github-star-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 170, 0, 0.1);
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    color: var(--primary) !important;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 170, 0, 0.1);
+}
+
+.github-star-btn:hover {
+    background: var(--primary) !important;
+    color: #000 !important;
+}
+
+.github-star-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
 /* ---------- DEPARTMENT SELECTION MODAL ---------- */
 #deptModal {
     position: fixed;
@@ -146,19 +175,19 @@ h1, h2, h3, .logo, .dept-btn {
 }
 
 #deptModal h1 {
-    font-size: clamp(48px, 8vw, 80px); /* Slightly larger for visual impact */
+    font-size: clamp(48px, 8vw, 80px);
     margin-bottom: 15px;
-    font-weight: 700; /* Bold applied */
-    text-shadow: 0 0 30px rgba(255, 69, 0, 0.5); /* Fiery glow behind text */
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(255, 69, 0, 0.5);
 }
 
 #deptModal h1 .bengali-text {
-    font-weight: 700; /* Bold applied specifically to Bengali font */
+    font-weight: 700; 
 }
 
 #deptModal h1 span {
     color: var(--accent);
-    font-weight: 800; /* Extra bold for the colored section */
+    font-weight: 800; 
 }
 
 #deptModal p {
@@ -179,8 +208,8 @@ h1, h2, h3, .logo, .dept-btn {
     padding: 22px 60px;
     font-size: 20px;
     font-weight: 500;
-    letter-spacing: 5px; /* Premium spacing added */
-    background: linear-gradient(135deg, rgba(40, 10, 0, 0.8), rgba(15, 5, 0, 0.9)); /* Magma Gradient */
+    letter-spacing: 5px; 
+    background: linear-gradient(135deg, rgba(40, 10, 0, 0.8), rgba(15, 5, 0, 0.9)); 
     color: var(--text);
     border: 1px solid rgba(255, 170, 0, 0.4);
     cursor: pointer;
@@ -233,6 +262,7 @@ nav {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 28px;
 }
 
@@ -282,6 +312,14 @@ nav {
     color: var(--muted);
     line-height: 1.7;
     font-size: 16.5px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .primary-btn {
@@ -644,7 +682,7 @@ nav {
     margin-top: -2px;
 }
 
-/* ---------- FIXED TABLE ALIGNMENT (NO SHIFTING) ---------- */
+/* ---------- FIXED TABLE ALIGNMENT ---------- */
 .rds-wrapper {
     background: transparent;
     padding: 10px 0;
@@ -672,7 +710,6 @@ nav {
     letter-spacing: 1px;
 }
 
-/* Fixed Table Layout strictly preserves column spacing */
 .semester-table {
     width: 100%;
     border-collapse: collapse;
@@ -872,6 +909,12 @@ footer {
             <a href="#electives">Electives</a>
             <a href="#planner">Planner</a>
             <a href="#dashboard">Dashboard</a>
+            
+            <!-- GitHub Star Button (Navbar) -->
+            <a href="https://github.com/shabab-404/nsu-semester-planner" target="_blank" class="github-star-btn fluid-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                Star on GitHub
+            </a>
         </div>
     </nav>
 
@@ -882,9 +925,18 @@ footer {
             Your academic companion for tracking completed courses,
             understanding your degree progress and planning the semesters ahead.
         </p>
-        <button class="primary-btn fluid-box" onclick="document.getElementById('readme').scrollIntoView({behavior:'smooth'})">
-            Start Planning →
-        </button>
+        
+        <div class="hero-buttons">
+            <button class="primary-btn fluid-box" onclick="document.getElementById('readme').scrollIntoView({behavior:'smooth'})">
+                Start Planning →
+            </button>
+            
+            <!-- GitHub Star Button (Hero Section for Mobile Visibility) -->
+            <a href="https://github.com/shabab-404/nsu-semester-planner" target="_blank" class="github-star-btn fluid-box" style="padding: 13px 20px; font-size: 15px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                Star the Repo
+            </a>
+        </div>
     </section>
 
     <main class="container">
@@ -1846,204 +1898,3 @@ function generateNewPlanner() {
     // Lowest-bucket distribution for balance
     for (const course of remainingCourses) {
         const target = newPlan.reduce((prev, curr) => (prev.credits < curr.credits) ? prev : curr);
-        target.courses.push(course);
-        target.credits += course.cr;
-    }
-
-    currentPlan = newPlan;
-    savePlanState();
-    renderPlanHTML();
-}
-
-function renderPlanHTML() {
-    const list = document.getElementById("semesterList");
-    list.innerHTML = "";
-
-    if (currentPlan.length === 0) {
-        list.innerHTML = `<div class="fluid-box" style="padding: 20px; color:var(--text); text-align:center; border-radius:12px;">No routine generated. Click 'Generate My Graduation Plan'.</div>`;
-        return;
-    }
-
-    currentPlan.forEach((semester, index) => {
-        let leftRows = "";
-        let semFeeTotal = 9500; // Base Fee set to 9500
-        let crTotal = 0;
-
-        if (semester.courses.length === 0) {
-            leftRows = `<tr><td colspan="5" style="text-align:center; padding:15px; color:var(--text);">No courses scheduled. Drop courses here.</td></tr>`;
-        } else {
-            leftRows = semester.courses.map((course) => {
-                const fee = course.cr * FEE_PER_CREDIT;
-                semFeeTotal += fee;
-                crTotal += course.cr;
-                const codeClean = course.code.replace(" + L", "L").replace(/\s/g, "");
-                
-                // NO FLUID BOX HERE: Keeps the table strictly aligned
-                return `
-                <tr class="plan-course" draggable="true" ondragstart="dragStart(event)" ondragend="dragEnd(event)" data-code="${course.code}" data-cr="${course.cr}" data-name="${course.name}" data-type="${course.type}">
-                    <td class="check-icon" style="text-align: center;">✔</td>
-                    <td style="font-weight:bold; text-align: left;">${codeClean}</td>
-                    <td style="text-align: center;">${course.cr.toFixed(1)}</td>
-                    <td class="fee-col" style="text-align: right;">${fee}</td>
-                    <td class="delete-icon" style="text-align: center;" onclick="removeCourseFromPlan(this)">✖</td>
-                </tr>
-                `;
-            }).join("");
-        }
-
-        const tableHTML = `
-            <div class="rds-sem-block semester-card fluid-box" style="margin-bottom: 10px;">
-                <div class="rds-sem-title">${semester.name}</div>
-                <table class="semester-table" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropCourse(event)">
-                    <colgroup>
-                        <col style="width: 60px;">
-                        <col style="width: auto;">
-                        <col style="width: 70px;">
-                        <col style="width: 90px;">
-                        <col style="width: 40px;">
-                    </colgroup>
-                    <thead class="rds-thead">
-                        <tr>
-                            <th style="text-align: center;">Saved</th>
-                            <th style="text-align: left;">Course</th>
-                            <th style="text-align: center;">Credit</th>
-                            <th style="text-align: right;">Fees</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-body">
-                        ${leftRows}
-                    </tbody>
-                    <tfoot class="fee-row">
-                        <tr>
-                            <td colspan="2" style="text-align:right; color:var(--primary); font-weight:bold;">
-                                Total Credits: <span class="sem-total-cr">${crTotal.toFixed(1)}</span>
-                            </td>
-                            <td style="text-align:right; color:var(--muted); white-space:nowrap;">Activity Fee</td>
-                            <td style="text-align:right; color:var(--text);">9500</td>
-                            <td></td>
-                        </tr>
-                        <tr style="font-weight:bold; color:var(--text);">
-                            <td colspan="3" style="text-align:right;">Total Cost</td>
-                            <td class="sem-total-fee" style="text-align:right; color:var(--primary); font-size:14px;">${semFeeTotal}</td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="rds-actions-container">
-                    <div class="rds-buttons">
-                        <button class="rds-btn fluid-box">Save</button>
-                        <button class="rds-btn fluid-box">Discard Changes</button>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        const wrapper = document.createElement('div');
-        list.appendChild(wrapper);
-        wrapper.outerHTML = tableHTML;
-    });
-    
-    setTimeout(initFluidHover, 100);
-}
-
-// Scrapes the HTML table state and saves it back into the master array
-function updatePlanStateFromDOM() {
-    const cards = document.querySelectorAll('.semester-card');
-    const newPlan = [];
-    
-    cards.forEach(card => {
-        const semName = card.querySelector('.rds-sem-title').textContent;
-        const rows = card.querySelectorAll('.plan-course');
-        const courses = [];
-        let credits = 0;
-        
-        rows.forEach(row => {
-            const cr = parseFloat(row.dataset.cr);
-            courses.push({
-                code: row.dataset.code,
-                name: row.dataset.name,
-                cr: cr,
-                type: row.dataset.type
-            });
-            credits += cr;
-        });
-        
-        newPlan.push({ name: semName, courses: courses, credits: credits });
-    });
-    
-    currentPlan = newPlan;
-    savePlanState();
-    recalculateSemesterCredits();
-}
-
-function savePlanState() {
-    localStorage.setItem(`rtnc_plan_${currentDept}`, JSON.stringify(currentPlan));
-}
-
-function removeCourseFromPlan(btn) {
-    playClickSound(); // ADDED SOUND
-    btn.parentElement.remove();
-    updatePlanStateFromDOM();
-}
-
-// --- Drag and Drop Handlers ---
-let draggedItem = null;
-
-function dragStart(e) {
-    draggedItem = e.currentTarget;
-    setTimeout(() => e.currentTarget.style.opacity = '0.4', 0);
-}
-
-function dragEnd(e) {
-    e.currentTarget.style.opacity = '1';
-    draggedItem = null;
-}
-
-function dragOver(e) {
-    e.preventDefault(); 
-}
-
-function dragLeave(e) {
-}
-
-function dropCourse(e) {
-    e.preventDefault();
-    let target = e.target;
-    while(target && target.tagName !== 'TABLE') {
-        target = target.parentElement;
-    }
-    
-    if (draggedItem && target) {
-        const tbody = target.querySelector('.table-body');
-        if(tbody.querySelector('td[colspan]')) tbody.innerHTML = ""; // Clear empty state placeholder
-        tbody.appendChild(draggedItem);
-        
-        // Triggers the save sequence
-        updatePlanStateFromDOM(); 
-    }
-}
-
-function recalculateSemesterCredits() {
-    document.querySelectorAll('.semester-card').forEach(card => {
-        let feeTotal = 9500; // Base Fee set to 9500
-        let crTotal = 0;
-        card.querySelectorAll('.plan-course').forEach(row => {
-            const cr = parseFloat(row.dataset.cr);
-            const fee = cr * FEE_PER_CREDIT;
-            row.querySelector('.fee-col').textContent = fee;
-            feeTotal += fee;
-            crTotal += cr;
-        });
-        
-        const feeEl = card.querySelector('.sem-total-fee');
-        if (feeEl) feeEl.textContent = feeTotal;
-        
-        const crEl = card.querySelector('.sem-total-cr');
-        if (crEl) crEl.textContent = crTotal.toFixed(1);
-    });
-}
-
-</script>
-</body>
-</html>
