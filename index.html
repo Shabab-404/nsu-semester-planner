@@ -5,18 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>রিটেক নিতে চাই না — NSU Academic Planner</title>
 
-<!-- Import Lexend Font, Bengali Font, and Pacifico -->
+<!-- Import Lexend Font, Bengali Font (Bold 700/800 weights), and Pacifico -->
 <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;500;700;800&family=Lexend:wght@300;400;500;700&family=Pacifico&display=swap" rel="stylesheet">
 
 <!-- Mobile Touch Drag & Drop Polyfill -->
 <script src="https://cdn.jsdelivr.net/npm/drag-drop-touch@1.0.2/DragDropTouch.min.js"></script>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
     /* Pure Black Volcanic Theme */
@@ -31,7 +27,6 @@
     --text: #fff3e0; /* Warm off-white */
     --muted: #a68a80;
     --danger: #ff1100;
-    --warning: #ffaa00;
     
     /* Dark Glass RDS UI Variables */
     --rds-table-bg: rgba(10, 5, 0, 0.5);
@@ -50,37 +45,18 @@ body {
     background-attachment: fixed;
 }
 
-.bengali-text {
-    font-family: 'Anek Bangla', sans-serif;
-    letter-spacing: 0px; 
-}
-
-h1, h2, h3, .logo, .dept-btn {
-    font-weight: 300; 
-    letter-spacing: -0.01em; 
-}
+.bengali-text { font-family: 'Anek Bangla', sans-serif; letter-spacing: 0px; }
+h1, h2, h3, .logo, .dept-btn { font-weight: 300; letter-spacing: -0.01em; }
 
 /* ---------- FIRE BACKGROUND ANIMATION ---------- */
 #fire-container {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-    background-color: #000000;
-    background-image: radial-gradient(circle at 50% 100%, #2a0800 0%, #000000 70%);
+    position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+    background-color: #000000; background-image: radial-gradient(circle at 50% 100%, #2a0800 0%, #000000 70%);
 }
-
 .ember {
-    position: absolute;
-    bottom: -20px;
-    background: #ffaa00;
-    border-radius: 50%;
-    opacity: 0;
-    box-shadow: 0 0 10px #ff4500, 0 0 20px #ffaa00;
-    animation: float-up linear infinite;
+    position: absolute; bottom: -20px; background: #ffaa00; border-radius: 50%; opacity: 0;
+    box-shadow: 0 0 10px #ff4500, 0 0 20px #ffaa00; animation: float-up linear infinite;
 }
-
 @keyframes float-up {
     0% { transform: translateY(0) scale(1) translateX(0); opacity: 1; }
     100% { transform: translateY(-100vh) scale(0.2) translateX(20px); opacity: 0; }
@@ -88,238 +64,84 @@ h1, h2, h3, .logo, .dept-btn {
 
 /* ---------- PERFECTED VOLCANIC BOX STYLING ---------- */
 .fluid-box {
-    position: relative;
-    background: var(--card);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--line);
-    border-radius: 12px;
+    position: relative; background: var(--card); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 12px;
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-    transform-style: preserve-3d;
-    will-change: transform;
-    overflow: hidden;
+    transform-style: preserve-3d; will-change: transform; overflow: hidden;
 }
-
-/* Subtle inner background glow that follows the mouse */
 .fluid-box::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(
-        200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(255, 170, 0, 0.08), 
-        transparent 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 0;
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    background: radial-gradient(200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 170, 0, 0.08), transparent 100%);
+    opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 0;
 }
-
 .fluid-box:hover::before { opacity: 1; }
+.fluid-box > * { position: relative; z-index: 1; }
 
-.fluid-box > * {
-    position: relative;
-    z-index: 1;
-}
-
-/* ---------- SLEEK CIRCULAR GITHUB BUTTON ---------- */
+/* ---------- RAW GITHUB LOGO CUTOUT ---------- */
 .github-floating-btn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 30px;
+    right: 30px;
     z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 50%; /* Perfect Circle */
-    box-shadow: 0 10px 25px rgba(255, 69, 0, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: block;
+    width: 45px; 
+    height: 45px;
+    background: none; 
+    border: none; 
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .github-floating-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(255, 170, 0, 0.8);
+    transform: translateY(-5px) scale(1.1);
+    /* Logo casts a fiery glow */
+    filter: drop-shadow(0 0 15px rgba(255, 170, 0, 0.9)); 
 }
 
 .github-floating-btn svg {
-    width: 28px;
-    height: 28px;
-    fill: #000;
+    width: 100%;
+    height: 100%;
+    fill: var(--primary); /* Magma/Fire Yellow */
 }
 
 /* ---------- DEPARTMENT SELECTION MODAL ---------- */
 #deptModal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    z-index: 3000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    z-index: 3000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;
 }
-
-#deptModal h1 {
-    font-size: clamp(48px, 8vw, 80px);
-    margin-bottom: 15px;
-    font-weight: 700;
-    text-shadow: 0 0 30px rgba(255, 69, 0, 0.5);
-}
-
+#deptModal h1 { font-size: clamp(48px, 8vw, 80px); margin-bottom: 15px; font-weight: 700; text-shadow: 0 0 30px rgba(255, 69, 0, 0.5); }
 #deptModal h1 .bengali-text { font-weight: 700; }
 #deptModal h1 span { color: var(--accent); font-weight: 800; }
-
-#deptModal p {
-    color: var(--muted);
-    font-size: 18px;
-    margin-bottom: 40px;
-    letter-spacing: 0.5px;
-}
-
-.dept-btn-group {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.dept-btn {
-    padding: 22px 60px;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 5px; 
-    background: linear-gradient(135deg, rgba(40, 10, 0, 0.8), rgba(15, 5, 0, 0.9)); 
-    color: var(--text);
-    border: 1px solid rgba(255, 170, 0, 0.4);
-    cursor: pointer;
-    border-radius: 12px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-
+#deptModal p { color: var(--muted); font-size: 18px; margin-bottom: 40px; letter-spacing: 0.5px; }
+.dept-btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.dept-btn { padding: 22px 60px; font-size: 20px; font-weight: 500; letter-spacing: 5px; background: linear-gradient(135deg, rgba(40, 10, 0, 0.8), rgba(15, 5, 0, 0.9)); color: var(--text); border: 1px solid rgba(255, 170, 0, 0.4); cursor: pointer; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
 .dept-btn:hover { color: var(--primary); }
 
 /* ---------- WATERMARK ---------- */
-.watermark {
-    position: fixed;
-    bottom: 15px;
-    left: 20px;
-    font-size: 1.1rem;
-    font-family: 'Pacifico', cursive;
-    color: rgba(255, 170, 0, 0.2);
-    z-index: 9998;
-    pointer-events: none;
-    letter-spacing: 1px;
-    text-transform: capitalize;
-    transform: rotate(-5deg);
-}
+.watermark { position: fixed; bottom: 15px; left: 20px; font-size: 1.1rem; font-family: 'Pacifico', cursive; color: rgba(255, 170, 0, 0.2); z-index: 9998; pointer-events: none; letter-spacing: 1px; text-transform: capitalize; transform: rotate(-5deg); }
 
 /* ---------- NAVBAR ---------- */
-nav {
-    height: 72px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 7%;
-    background: rgba(15, 5, 0, 0.6);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
+nav { height: 72px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 7%; background: rgba(15, 5, 0, 0.6); border-bottom: 1px solid var(--line); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
 .logo { font-size: 25px; }
 .logo span { color: var(--accent); }
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-.nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 14px;
-    transition: .25s;
-    font-weight: 400;
-}
-
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: .25s; font-weight: 400; }
 .nav-links a:hover { color: var(--primary); }
 
 /* ---------- HERO ---------- */
-.hero {
-    text-align: center;
-    padding: 80px 20px 55px;
-}
-
-.badge {
-    display: inline-block;
-    padding: 7px 15px;
-    color: var(--primary);
-    font-size: 12px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: 500;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-}
-
-.hero h1 {
-    font-size: clamp(42px, 7vw, 76px);
-    line-height: 1;
-    margin-bottom: 10px;
-}
-
+.hero { text-align: center; padding: 80px 20px 55px; }
+.badge { display: inline-block; padding: 7px 15px; color: var(--primary); font-size: 12px; margin-bottom: 20px; text-transform: uppercase; font-weight: 500; border-radius: 999px; border: 1px solid var(--line); }
+.hero h1 { font-size: clamp(42px, 7vw, 76px); line-height: 1; margin-bottom: 10px; }
 .hero h1 span { color: var(--accent); }
+.hero p { max-width: 720px; margin: 20px auto 28px; color: var(--muted); line-height: 1.7; font-size: 16.5px; }
+.hero-buttons { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; }
+.primary-btn { border: 1px solid rgba(255, 170, 0, 0.4); padding: 14px 30px; border-radius: 10px; color: #000; background: linear-gradient(135deg, var(--primary), var(--accent)); font-family: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 10px 25px rgba(255, 69, 0, 0.2); }
 
-.hero p {
-    max-width: 720px;
-    margin: 20px auto 28px;
-    color: var(--muted);
-    line-height: 1.7;
-    font-size: 16.5px;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.primary-btn {
-    border: 1px solid rgba(255, 170, 0, 0.4);
-    padding: 14px 30px;
-    border-radius: 10px; 
-    color: #000;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    font-family: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(255, 69, 0, 0.2);
-}
-
-/* ---------- CONTAINER ---------- */
+/* ---------- CONTAINER & READ ME ---------- */
 .container { width: min(1200px, 90%); margin: auto; }
-
 .section-title { text-align: center; margin-bottom: 25px; }
 .section-title h2 { font-size: 28px; }
 .section-title p { color: var(--muted); margin-top: 7px; }
-
-/* ---------- READ ME ---------- */
 .readme-section { margin-bottom: 70px; border-radius: 12px; padding: 30px 40px; }
 .readme-section ol { color: var(--muted); line-height: 1.8; margin-left: 20px; font-size: 15px; }
 .readme-section li { margin-bottom: 10px; }
@@ -336,27 +158,12 @@ nav {
 /* ---------- COURSE AREA ---------- */
 .course-section { margin-bottom: 70px; }
 .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
-.filter-btn {
-    padding: 9px 14px; border-radius: 8px; color: var(--muted);
-    font-family: inherit; font-weight: 400; cursor: pointer;
-}
+.filter-btn { padding: 9px 14px; border-radius: 8px; color: var(--muted); font-family: inherit; font-weight: 400; cursor: pointer; }
 .filter-btn.active, .filter-btn:hover { color: #000; border-color: var(--accent); background: var(--primary); }
-
 .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .course-card { padding: 18px; min-height: 140px; cursor: pointer; }
-
-.course-card.completed {
-    border-color: var(--primary) !important;
-    background-color: rgba(255, 170, 0, 0.1) !important;
-}
-
-.course-card.completed::after {
-    content: "✓"; position: absolute; right: 15px; top: 12px;
-    width: 25px; height: 25px; display: flex; align-items: center;
-    justify-content: center; border-radius: 50%; color: #000;
-    background: var(--primary); font-weight: 900; z-index: 2;
-}
-
+.course-card.completed { border-color: var(--primary) !important; background-color: rgba(255, 170, 0, 0.1) !important; }
+.course-card.completed::after { content: "✓"; position: absolute; right: 15px; top: 12px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #000; background: var(--primary); font-weight: 900; z-index: 2; }
 .course-code { color: var(--accent); font-size: 15px; font-weight: 500; }
 .course-name { margin-top: 8px; font-size: 16px; font-weight: 400; line-height: 1.35; }
 .course-credit { margin-top: 13px; color: var(--muted); font-size: 13px; }
@@ -373,50 +180,25 @@ nav {
 .slot-number { color: var(--primary); font-size: 12px; font-weight: 500; }
 .slot-name { margin-top: 8px; font-weight: 400; }
 .slot-credit { color: var(--muted); font-size: 12px; margin-top: 7px; }
-
 .elective-options { margin-top: 25px; }
 .specialized-note { background: rgba(255, 69, 0, 0.05); border-left: 3px solid var(--accent); padding: 18px 20px; margin-bottom: 25px; border-radius: 6px; }
 .specialized-note h2 { color: var(--accent); font-size: 18px; letter-spacing: 0px; margin-bottom: 6px; }
 .specialized-note p { color: var(--text); font-size: 14px; line-height: 1.5; }
-
 .track { margin-bottom: 18px; }
 .track-title { color: var(--primary); margin-bottom: 9px; font-weight: 500; }
 .elective-option-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
-
-.elective-option {
-    display: flex; align-items: flex-start; gap: 9px;
-    padding: 12px 35px 12px 12px; background: var(--card2);
-    cursor: pointer; user-select: none;
-}
-
-.elective-option.selected {
-    border-color: var(--primary) !important;
-    background-color: rgba(255, 170, 0, 0.1) !important;
-}
-
-.elective-option.selected::after {
-    content: "✓"; position: absolute; right: 12px; top: 50%;
-    transform: translateY(-50%); color: var(--primary);
-    font-weight: 500; font-size: 16px; z-index: 2;
-}
-
+.elective-option { display: flex; align-items: flex-start; gap: 9px; padding: 12px 35px 12px 12px; background: var(--card2); cursor: pointer; user-select: none; }
+.elective-option.selected { border-color: var(--primary) !important; background-color: rgba(255, 170, 0, 0.1) !important; }
+.elective-option.selected::after { content: "✓"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--primary); font-weight: 500; font-size: 16px; z-index: 2; }
 .elective-option div { line-height: 1.35; font-size: 13px; }
 .elective-option small { display: block; color: var(--muted); margin-top: 4px; }
 
 /* ---------- PLANNER CONTROLS ---------- */
 .planner { margin-bottom: 80px; }
 .planner-controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
-.planner-controls select, .retake-controls select {
-    padding: 12px 15px; border-radius: 8px; color: var(--text);
-    font-family: inherit; font-weight: 300; background: var(--card2);
-    border: 1px solid var(--line);
-}
+.planner-controls select, .retake-controls select { padding: 12px 15px; border-radius: 8px; color: var(--text); font-family: inherit; font-weight: 300; background: var(--card2); border: 1px solid var(--line); }
 .retake-controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; }
-.retake-badge {
-    display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
-    background: rgba(255, 0, 0, 0.1); border-color: var(--danger);
-    font-size: 13px; color: var(--danger); margin: 0 8px 15px 0; border-radius: 20px;
-}
+.retake-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(255, 0, 0, 0.1); border-color: var(--danger); font-size: 13px; color: var(--danger); margin: 0 8px 15px 0; border-radius: 20px; }
 .retake-badge button { background: none; border: none; color: var(--danger); cursor: pointer; font-weight: bold; font-size: 16px; margin-top: -2px; }
 
 /* ---------- FIXED TABLE ALIGNMENT ---------- */
@@ -424,24 +206,17 @@ nav {
 .semester-list { display: flex; flex-direction: column; gap: 20px; }
 .rds-sem-block { display: block; width: 100%; border-radius: 12px; }
 .rds-sem-title { text-align: center; font-weight: 400; font-size: 16px; margin-bottom: 12px; padding-top: 15px; color: var(--primary); letter-spacing: 1px; }
-
-.semester-table {
-    width: 100%; border-collapse: collapse; background: var(--rds-table-bg);
-    font-size: 14px; border: 1px solid var(--rds-border); table-layout: fixed; 
-}
+.semester-table { width: 100%; border-collapse: collapse; background: var(--rds-table-bg); font-size: 14px; border: 1px solid var(--rds-border); table-layout: fixed; }
 .semester-table th { background: var(--rds-header); border-bottom: 1px solid var(--rds-border); padding: 12px 15px; font-weight: 500; color: var(--accent); }
 .semester-table td { padding: 12px 15px; border-bottom: 1px solid var(--rds-border); color: var(--text); }
 .semester-table tr:last-child td { border-bottom: none; }
-
 .plan-course { cursor: grab; cursor: -webkit-grab; transition: background 0.2s; touch-action: none; }
 .plan-course:active { cursor: grabbing; cursor: -webkit-grabbing; }
 .plan-course:hover { background-color: rgba(255, 170, 0, 0.08); }
-
 .check-icon { color: var(--primary); font-weight: bold; font-size: 16px; }
 .delete-icon { color: var(--danger); font-weight: bold; font-size: 16px; cursor: pointer; }
 .delete-icon:hover { transform: scale(1.2); }
 .fee-row td { padding: 14px 15px; border-top: 1px solid var(--rds-border); background: var(--rds-header); color: var(--text); }
-
 .rds-actions-container { display: flex; justify-content: flex-start; align-items: center; background: transparent; padding: 15px; }
 .rds-buttons { display: flex; gap: 8px; }
 .rds-btn { padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 400; cursor: pointer; color: var(--primary); }
@@ -457,8 +232,6 @@ nav {
 .progress-info { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--muted); font-size: 13px; }
 .progress { height: 10px; background: rgba(255, 255, 255, 0.05); border-radius: 999px; overflow: hidden; }
 .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: inherit; transition: width .5s ease; }
-
-/* ---------- FOOTER ---------- */
 footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
 
 /* ---------- RESPONSIVE ---------- */
@@ -475,13 +248,7 @@ footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top
     .stats, .course-grid, .elective-slots, .elective-option-grid, .req-grid { grid-template-columns: 1fr; }
     .dept-btn { width: 100%; }
     .rds-actions-container { flex-direction: column; gap: 10px; align-items: flex-start; }
-    .github-floating-btn {
-        bottom: 20px;
-        right: 20px;
-        width: 48px;
-        height: 48px;
-    }
-    .github-floating-btn svg { width: 24px; height: 24px; }
+    .github-floating-btn { bottom: 20px; right: 20px; width: 40px; height: 40px; }
 }
 </style>
 </head>
@@ -491,9 +258,11 @@ footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top
 <!-- PURE CSS FIRE BACKGROUND ANIMATION -->
 <div id="fire-container"></div>
 
-<!-- SMALL CIRCULAR FLOATING GITHUB BUTTON -->
+<!-- JUST THE GITHUB LOGO CUTOUT (NO CIRCLE, NO BACKGROUND) -->
 <a href="https://github.com/shabab-404/nsu-semester-planner" target="_blank" class="github-floating-btn" aria-label="Star on GitHub" onclick="playClickSound()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+    </svg>
 </a>
 
 <!-- DEPARTMENT SELECTION MODAL -->
@@ -509,7 +278,7 @@ footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top
 <!-- Watermark -->
 <div class="watermark">Shabab</div>
 
-<!-- Main App Wrapper (Hidden until dept is selected) -->
+<!-- Main App Wrapper -->
 <div id="mainApp" style="display: none;">
 
     <nav>
@@ -527,10 +296,7 @@ footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top
     <section class="hero">
         <div class="badge fluid-box" id="heroBadge">NORTH SOUTH UNIVERSITY</div>
         <h1 class="bengali-text">রিটেক <span>নিতে চাই না</span></h1>
-        <p>
-            Your academic companion for tracking completed courses,
-            understanding your degree progress and planning the semesters ahead.
-        </p>
+        <p>Your academic companion for tracking completed courses, understanding your degree progress and planning the semesters ahead.</p>
         <div class="hero-buttons">
             <button class="primary-btn fluid-box" onclick="document.getElementById('readme').scrollIntoView({behavior:'smooth'})">
                 Start Planning →
@@ -539,197 +305,119 @@ footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top
     </section>
 
     <main class="container">
-
-    <!-- READ ME -->
-    <section class="readme-section fluid-box" id="readme">
-        <div class="section-title">
-            <h2>📖 How to Use This Planner</h2>
-            <p>Follow these steps to generate your personalized graduation roadmap.</p>
-        </div>
-        <ol>
-            <li><strong>Review Requirements:</strong> Check the <em>Degree Requirements</em> section to understand your target credits.</li>
-            <li><strong>Select Completed Courses:</strong> Click on the courses you have already passed in the main grid below to mark them with a checkmark.</li>
-            <li><strong>Log Electives:</strong> Scroll to the <em>Specialized Electives</em> section and tick any electives you have already finished.</li>
-            <li><strong>Add Retakes:</strong> If you failed a specific part (like just the lab), <strong>first check off the combined course in the grid above</strong>, then select your specific Theory/Lab retake in the Planner's dropdown.</li>
-            <li><strong>Generate & Edit Plan:</strong> Choose how many semesters you have left and click Generate. <strong>Drag & Drop</strong> courses between semesters to balance your credit load!</li>
-        </ol>
-    </section>
-
-    <!-- REQUIREMENTS -->
-    <section class="requirements" id="requirements">
-        <div class="section-title">
-            <h2>Degree Requirements</h2>
-            <p>This planner tracks the complete 130-credit structure.</p>
-        </div>
-        <div class="req-grid" id="reqGrid">
-            <!-- Dynamically Populated based on Dept -->
-        </div>
-    </section>
-
-    <!-- COURSES -->
-    <section class="course-section" id="courses">
-        <div class="section-title">
-            <h2>Select Your Completed Courses</h2>
-            <p>Courses are ordered alphabetically. Click a course to mark it as completed.</p>
-        </div>
-
-        <div class="filter-bar">
-            <button class="filter-btn fluid-box active" onclick="filterCourses('all', this)">All</button>
-            <button class="filter-btn fluid-box" onclick="filterCourses('university', this)">University Core</button>
-            <button class="filter-btn fluid-box" onclick="filterCourses('math', this)">Math / Science</button>
-            <button class="filter-btn fluid-box" id="majorFilterBtn" onclick="filterCourses('core', this)">Major Core</button>
-            <button class="filter-btn fluid-box" onclick="filterCourses('other', this)">Other</button>
-        </div>
-
-        <div class="course-grid" id="courseGrid"></div>
-    </section>
-
-    <!-- SPECIALIZED ELECTIVES -->
-    <section class="course-section" id="electives">
-        <div class="section-title">
-            <h2>Specialized Electives</h2>
-            <p>Choose completed electives only. Future electives are handled automatically by the planner.</p>
-        </div>
-
-        <div class="elective-panel fluid-box">
-            <div class="elective-header">
-                <div>
-                    <h3 id="electiveHeaderTitle">Specialized Electives</h3>
-                    <p>Requirement: 3 courses • 9 credits</p>
-                </div>
-                <div class="elective-status" id="electiveStatus">
-                    0 / 3 selected
-                </div>
+        <!-- READ ME -->
+        <section class="readme-section fluid-box" id="readme">
+            <div class="section-title">
+                <h2>📖 How to Use This Planner</h2>
+                <p>Follow these steps to generate your personalized graduation roadmap.</p>
             </div>
+            <ol>
+                <li><strong>Review Requirements:</strong> Check the <em>Degree Requirements</em> section to understand your target credits.</li>
+                <li><strong>Select Completed Courses:</strong> Click on the courses you have already passed in the main grid below to mark them with a checkmark.</li>
+                <li><strong>Log Electives:</strong> Scroll to the <em>Specialized Electives</em> section and tick any electives you have already finished.</li>
+                <li><strong>Add Retakes:</strong> If you failed a specific part (like just the lab), <strong>first check off the combined course in the grid above</strong>, then select your specific Theory/Lab retake in the Planner's dropdown.</li>
+                <li><strong>Generate & Edit Plan:</strong> Choose how many semesters you have left and click Generate. <strong>Drag & Drop</strong> courses between semesters to balance your credit load!</li>
+            </ol>
+        </section>
 
-            <div class="elective-slots">
-                <div class="elective-slot fluid-box">
-                    <div class="slot-number">ELECTIVE 01</div>
-                    <div class="slot-name">Specialized Elective 1</div>
-                    <div class="slot-credit">3 Credits</div>
+        <!-- REQUIREMENTS -->
+        <section class="requirements" id="requirements">
+            <div class="section-title">
+                <h2>Degree Requirements</h2>
+                <p>This planner tracks the complete 130-credit structure.</p>
+            </div>
+            <div class="req-grid" id="reqGrid"></div>
+        </section>
+
+        <!-- COURSES -->
+        <section class="course-section" id="courses">
+            <div class="section-title">
+                <h2>Select Your Completed Courses</h2>
+                <p>Courses are ordered alphabetically. Click a course to mark it as completed.</p>
+            </div>
+            <div class="filter-bar">
+                <button class="filter-btn fluid-box active" onclick="filterCourses('all', this)">All</button>
+                <button class="filter-btn fluid-box" onclick="filterCourses('university', this)">University Core</button>
+                <button class="filter-btn fluid-box" onclick="filterCourses('math', this)">Math / Science</button>
+                <button class="filter-btn fluid-box" id="majorFilterBtn" onclick="filterCourses('core', this)">Major Core</button>
+                <button class="filter-btn fluid-box" onclick="filterCourses('other', this)">Other</button>
+            </div>
+            <div class="course-grid" id="courseGrid"></div>
+        </section>
+
+        <!-- SPECIALIZED ELECTIVES -->
+        <section class="course-section" id="electives">
+            <div class="section-title">
+                <h2>Specialized Electives</h2>
+                <p>Choose completed electives only. Future electives are handled automatically by the planner.</p>
+            </div>
+            <div class="elective-panel fluid-box">
+                <div class="elective-header">
+                    <div><h3 id="electiveHeaderTitle">Specialized Electives</h3><p>Requirement: 3 courses • 9 credits</p></div>
+                    <div class="elective-status" id="electiveStatus">0 / 3 selected</div>
                 </div>
-                <div class="elective-slot fluid-box">
-                    <div class="slot-number">ELECTIVE 02</div>
-                    <div class="slot-name">Specialized Elective 2</div>
-                    <div class="slot-credit">3 Credits</div>
+                <div class="elective-slots">
+                    <div class="elective-slot fluid-box"><div class="slot-number">ELECTIVE 01</div><div class="slot-name">Specialized Elective 1</div><div class="slot-credit">3 Credits</div></div>
+                    <div class="elective-slot fluid-box"><div class="slot-number">ELECTIVE 02</div><div class="slot-name">Specialized Elective 2</div><div class="slot-credit">3 Credits</div></div>
+                    <div class="elective-slot fluid-box"><div class="slot-number">ELECTIVE 03</div><div class="slot-name">Specialized Elective 3</div><div class="slot-credit">3 Credits</div></div>
                 </div>
-                <div class="elective-slot fluid-box">
-                    <div class="slot-number">ELECTIVE 03</div>
-                    <div class="slot-name">Specialized Elective 3</div>
-                    <div class="slot-credit">3 Credits</div>
+                <div class="elective-options">
+                    <div class="specialized-note">
+                        <h2>💡 SELECT ANY 3 COURSES</h2>
+                        <p>You can mix and match! Just select <strong>ANY 3</strong> specialized electives from the entire list below that you have already completed. You do not need to finish a specific track.</p>
+                    </div>
+                    <div id="electiveTracksContainer"></div>
                 </div>
             </div>
-
-            <div class="elective-options">
-                <div class="specialized-note">
-                    <h2>💡 SELECT ANY 3 COURSES</h2>
-                    <p>You can mix and match! Just select <strong>ANY 3</strong> specialized electives from the entire list below that you have already completed. You do not need to finish a specific track.</p>
+            <div class="elective-panel fluid-box" style="margin-top: 15px;">
+                <div class="elective-header">
+                    <div><h3>Open Elective</h3><p>Separate requirement • 1 course • 3 credits</p></div>
+                    <div class="elective-status" id="openStatus">Not completed</div>
                 </div>
-                <div id="electiveTracksContainer">
-                    <!-- Dynamically Populated based on Dept -->
-                </div>
-            </div>
-        </div>
-
-        <!-- OPEN ELECTIVE -->
-        <div class="elective-panel fluid-box" style="margin-top: 15px;">
-            <div class="elective-header">
-                <div>
-                    <h3>Open Elective</h3>
-                    <p>Separate requirement • 1 course • 3 credits</p>
-                </div>
-                <div class="elective-status" id="openStatus">
-                    Not completed
+                <div class="elective-option fluid-box" id="openElectiveDiv" onclick="toggleOpenElective()">
+                    <div>OPEN ELECTIVE<small>3 Credits — separate from Specialized Electives</small></div>
                 </div>
             </div>
-            <div class="elective-option fluid-box" id="openElectiveDiv" onclick="toggleOpenElective()">
-                <div>
-                    OPEN ELECTIVE<small>3 Credits — separate from Specialized Electives</small>
+        </section>
+
+        <!-- PLANNER -->
+        <section class="planner" id="planner">
+            <div class="section-title">
+                <h2>Graduation Planner</h2>
+                <p>The planner distributes remaining courses evenly. Drag and drop courses to edit your schedule.</p>
+            </div>
+            <div class="planner-controls">
+                <select id="semesterCount" class="fluid-box">
+                    <option value="1">1 Semester</option><option value="2">2 Semesters</option><option value="3">3 Semesters</option><option value="4">4 Semesters</option><option value="5" selected>5 Semesters</option><option value="6">6 Semesters</option><option value="7">7 Semesters</option><option value="8">8 Semesters</option><option value="9">9 Semesters</option><option value="10">10 Semesters</option>
+                </select>
+                <button class="primary-btn fluid-box" onclick="generateNewPlanner()">Generate My Graduation Plan →</button>
+            </div>
+            <div class="retake-controls">
+                <select id="retakeSelect" class="fluid-box"><option value="">+ Add a Course to Retake</option></select>
+                <button class="filter-btn fluid-box" onclick="addRetakeCourse()">Add Retake</button>
+            </div>
+            <div id="retakeListContainer" style="text-align:center;"></div>
+            <div class="rds-wrapper">
+                <div class="semester-list" id="semesterList">
+                    <div class="fluid-box" style="padding: 20px; color:var(--text); text-align:center;">No routine generated. Click 'Generate My Graduation Plan'.</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PLANNER -->
-    <section class="planner" id="planner">
-        <div class="section-title">
-            <h2>Graduation Planner</h2>
-            <p>The planner distributes remaining courses evenly. Drag and drop courses to edit your schedule.</p>
-        </div>
-
-        <div class="planner-controls">
-            <select id="semesterCount" class="fluid-box">
-                <option value="1">1 Semester</option>
-                <option value="2">2 Semesters</option>
-                <option value="3">3 Semesters</option>
-                <option value="4">4 Semesters</option>
-                <option value="5" selected>5 Semesters</option>
-                <option value="6">6 Semesters</option>
-                <option value="7">7 Semesters</option>
-                <option value="8">8 Semesters</option>
-                <option value="9">9 Semesters</option>
-                <option value="10">10 Semesters</option>
-            </select>
-            <button class="primary-btn fluid-box" onclick="generateNewPlanner()">
-                Generate My Graduation Plan →
-            </button>
-        </div>
-        
-        <div class="retake-controls">
-            <select id="retakeSelect" class="fluid-box">
-                <option value="">+ Add a Course to Retake</option>
-            </select>
-            <button class="filter-btn fluid-box" onclick="addRetakeCourse()">Add Retake</button>
-        </div>
-        <div id="retakeListContainer" style="text-align:center;"></div>
-
-        <!-- Corrected Grid RDS Output Window -->
-        <div class="rds-wrapper">
-            <div class="semester-list" id="semesterList">
-                <div class="fluid-box" style="padding: 20px; color:var(--text); text-align:center;">
-                    No routine generated. Click 'Generate My Graduation Plan'.
-                </div>
+        <!-- DASHBOARD -->
+        <section class="dashboard" id="dashboard">
+            <div class="section-title"><h2>Your Academic Dashboard</h2><p>Everything important at a glance.</p></div>
+            <div class="stats">
+                <div class="stat fluid-box"><div class="stat-label">Completed Credits</div><div class="stat-value" id="completedCredits">0</div></div>
+                <div class="stat fluid-box"><div class="stat-label">Remaining Credits</div><div class="stat-value" id="remainingCredits">130</div></div>
+                <div class="stat fluid-box"><div class="stat-label">Degree Progress</div><div class="stat-value" id="degreeProgress">0%</div></div>
+                <div class="stat fluid-box"><div class="stat-label">Current CGPA</div><div class="stat-value">—</div></div>
             </div>
-        </div>
-    </section>
-
-    <!-- DASHBOARD -->
-    <section class="dashboard" id="dashboard">
-        <div class="section-title">
-            <h2>Your Academic Dashboard</h2>
-            <p>Everything important at a glance.</p>
-        </div>
-
-        <div class="stats">
-            <div class="stat fluid-box">
-                <div class="stat-label">Completed Credits</div>
-                <div class="stat-value" id="completedCredits">0</div>
+            <div class="progress-wrap fluid-box">
+                <div class="progress-info"><span>Overall Degree Progress</span><span id="progressText">0 / 130 credits</span></div>
+                <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
             </div>
-            <div class="stat fluid-box">
-                <div class="stat-label">Remaining Credits</div>
-                <div class="stat-value" id="remainingCredits">130</div>
-            </div>
-            <div class="stat fluid-box">
-                <div class="stat-label">Degree Progress</div>
-                <div class="stat-value" id="degreeProgress">0%</div>
-            </div>
-            <div class="stat fluid-box">
-                <div class="stat-label">Current CGPA</div>
-                <div class="stat-value">—</div>
-            </div>
-        </div>
-
-        <div class="progress-wrap fluid-box">
-            <div class="progress-info">
-                <span>Overall Degree Progress</span>
-                <span id="progressText">0 / 130 credits</span>
-            </div>
-            <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-        </div>
-    </section>
-
+        </section>
     </main>
 
     <footer>
@@ -737,80 +425,53 @@ footer { text-align: center; padding: 35px 20px; color: var(--muted); border-top
     </footer>
 </div>
 
-<!-- ========================================== -->
-<!-- SCRIPTS AREA                               -->
-<!-- ========================================== -->
-
 <script>
 /* =========================================================
    CUSTOM SOUND ENGINE (WEB AUDIO API)
    ========================================================= */
 let audioCtx = null;
-
-// Initialize Audio on first user interaction (Browser security requirement)
 document.addEventListener('click', () => {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    } else if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    else if (audioCtx.state === 'suspended') audioCtx.resume();
 }, { once: false });
 
 function playHoverSound() {
     if (!audioCtx) return;
     let osc = audioCtx.createOscillator();
     let gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    
+    osc.connect(gain); gain.connect(audioCtx.destination);
     osc.type = 'sine';
     osc.frequency.setValueAtTime(120, audioCtx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.1);
-    
-    // INCREASED VOLUME: From 0.02 to 0.1
     gain.gain.setValueAtTime(0.1, audioCtx.currentTime); 
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-    
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.1);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.1);
 }
 
 function playClickSound() {
     if (!audioCtx) return;
     let osc = audioCtx.createOscillator();
     let gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    
+    osc.connect(gain); gain.connect(audioCtx.destination);
     osc.type = 'sine';
     osc.frequency.setValueAtTime(800, audioCtx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(1400, audioCtx.currentTime + 0.05);
-    
-    // INCREASED VOLUME: From 0.05 to 0.2
     gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-    
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.1);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.1);
 }
 
 function playSuccessSound() {
     if (!audioCtx) return;
     let osc = audioCtx.createOscillator();
     let gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    
+    osc.connect(gain); gain.connect(audioCtx.destination);
     osc.type = 'triangle';
     osc.frequency.setValueAtTime(440, audioCtx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
-    
-    // INCREASED VOLUME: From 0.06 to 0.3
     gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
     gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.3);
-    
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.3);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
 }
 
 /* =========================================================
@@ -819,47 +480,39 @@ function playSuccessSound() {
 function initFire() {
     const container = document.getElementById('fire-container');
     const emberCount = window.innerWidth < 600 ? 25 : 45; 
-    
     for (let i = 0; i < emberCount; i++) {
         let ember = document.createElement('div');
         ember.className = 'ember';
-        
         let size = Math.random() * 4 + 2;
         let left = Math.random() * 100;
-        let duration = Math.random() * 5 + 4; // 4 to 9 seconds
+        let duration = Math.random() * 5 + 4; 
         let delay = Math.random() * 5;
-        
         ember.style.width = `${size}px`;
         ember.style.height = `${size}px`;
         ember.style.left = `${left}vw`;
         ember.style.animationDuration = `${duration}s`;
         ember.style.animationDelay = `${delay}s`;
-        
         container.appendChild(ember);
     }
 }
 
 /* =========================================================
-   PERFECTED MAGMA BORDER HOVER SCRIPT (+ 30% Tilt for Course Cards)
+   MAGMA BORDER HOVER SCRIPT (+ 30% Tilt for Course Cards)
    ========================================================= */
 function initFluidHover() {
     const boxes = document.querySelectorAll('.fluid-box');
     boxes.forEach(box => {
         if(box.dataset.fluidAttached) return;
         box.dataset.fluidAttached = "true";
-
         box.addEventListener('mouseenter', playHoverSound);
 
         let tiltIntensity = 5.2; 
-        if (box.classList.contains('course-card') || box.classList.contains('elective-option')) {
-            tiltIntensity = 18; 
-        }
+        if (box.classList.contains('course-card') || box.classList.contains('elective-option')) tiltIntensity = 18; 
 
         box.addEventListener('mousemove', e => {
             const rect = box.getBoundingClientRect();
             const x = e.clientX - rect.left; 
             const y = e.clientY - rect.top;  
-            
             box.style.setProperty('--mouse-x', `${x}px`);
             box.style.setProperty('--mouse-y', `${y}px`);
 
@@ -876,11 +529,8 @@ function initFluidHover() {
         box.addEventListener('mouseleave', () => {
             box.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             box.style.boxShadow = `none`;
-            if (!box.classList.contains('selected') && !box.classList.contains('completed')) {
-                box.style.borderColor = `var(--line)`;
-            } else {
-                box.style.borderColor = `var(--primary)`;
-            }
+            if (!box.classList.contains('selected') && !box.classList.contains('completed')) box.style.borderColor = `var(--line)`;
+            else box.style.borderColor = `var(--primary)`;
         });
     });
 }
@@ -888,7 +538,6 @@ function initFluidHover() {
 /* =========================================================
    DATABASE STRUCTURES
    ========================================================= */
-
 const databases = {
     "CSE": {
         reqCards: [
@@ -900,7 +549,6 @@ const databases = {
             {title: "Open Elective", desc: "One 3-credit course from an eligible discipline.", cr: 3}
         ],
         courses: [
-            /* UNIVERSITY CORE */
             {code:"ENG 102", name:"Introduction to Composition", cr:3, cat:"university"},
             {code:"ENG 103", name:"Intermediate Composition", cr:3, cat:"university"},
             {code:"ENG 111", name:"Public Speaking", cr:3, cat:"university"},
@@ -911,8 +559,6 @@ const databases = {
             {code:"ECO 101/104", name:"Microeconomics / Macroeconomics", cr:3, cat:"university"},
             {code:"POL 101/104", name:"Political Science / Governance", cr:3, cat:"university"},
             {code:"SOC/ANT/ENV/GEO 101", name:"Social Science Elective", cr:3, cat:"university"},
-
-            /* MATH / SCIENCE (SEPS) */
             {code:"MAT 120", name:"Calculus I", cr:3, cat:"math"},
             {code:"MAT 130", name:"Calculus II", cr:3, cat:"math"},
             {code:"MAT 250", name:"Calculus III", cr:3, cat:"math"},
@@ -925,8 +571,6 @@ const databases = {
             {code:"BIO 103", name:"Biology", cr:3, cat:"math"},
             {code:"EEE 452", name:"Engineering Economics", cr:3, cat:"other"},
             {code:"EEE 154", name:"Engineering Drawing", cr:1, cat:"other"},
-
-            /* MAJOR CORE */
             {code:"CSE 115 + L", name:"Programming Language I with Lab", cr:4, cat:"core"},
             {code:"CSE 173", name:"Discrete Mathematics", cr:3, cat:"core"},
             {code:"CSE 215 + L", name:"Programming Language II with Lab", cr:4, cat:"core"},
@@ -941,44 +585,18 @@ const databases = {
             {code:"CSE 332 + L", name:"Computer Organization and Architecture with Lab", cr:3, cat:"core"},
             {code:"CSE 373", name:"Design and Analysis of Algorithms", cr:3, cat:"core"},
             {code:"CSE 425", name:"Concepts of Programming Language", cr:3, cat:"core"},
-
-            /* CAPSTONE & INTERNSHIP */
             {code:"CSE 299", name:"Junior Design Project I", cr:1, cat:"other"},
             {code:"CSE 498R", name:"Internship", cr:1, cat:"other"},
             {code:"CSE 499A", name:"Senior Design Project I", cr:1.5, cat:"other"},
             {code:"CSE 499B", name:"Senior Design Project II", cr:1.5, cat:"other"}
         ],
         electives: [
-            {track: "Algorithms & Computation", courses: [
-                {code: "CSE 401", name: "Advanced Programming Techniques"}, {code: "CSE 417", name: "Numerical Methods"},
-                {code: "CSE 418", name: "Computer Graphics"}, {code: "CSE 426", name: "Compiler Constructions"},
-                {code: "CSE 273", name: "Theory of Computation"}, {code: "CSE 491", name: "Special Topics"} 
-            ]},
-            {track: "Software Engineering", courses: [
-                {code: "CSE 411", name: "Advanced Database Systems"}, {code: "CSE 427", name: "Software Quality Assurance & Testing"},
-                {code: "CSE 428", name: "Software Process Management"}, {code: "CSE 429", name: "Software System Architecture"},
-                {code: "CSE 492", name: "Special Topics"}
-            ]},
-            {track: "Networks", courses: [
-                {code: "CSE 422", name: "Modelling and Simulation"}, {code: "CSE 438", name: "Data Communication & Network"},
-                {code: "CSE 482", name: "Internet and Web Technology"}, {code: "CSE 485", name: "Digital Signal Processing"},
-                {code: "CSE 486", name: "Mobile and Wireless Application Development"}, {code: "CSE 493", name: "Special Topics"}
-            ]},
-            {track: "Computer Architecture & VLSI", courses: [
-                {code: "CSE 433", name: "Advanced Architecture"}, {code: "CSE 435", name: "Introduction to VLSI Design"},
-                {code: "CSE 413", name: "Verilog HDL"}, {code: "CSE 414", name: "Advanced Chip Design Methodology"},
-                {code: "CSE 415", name: "VLSI Chip Testing"}, {code: "CSE 494", name: "Special Topics"}
-            ]},
-            {track: "Artificial Intelligence", courses: [
-                {code: "CSE 440", name: "Artificial Intelligence"}, {code: "CSE 445", name: "Machine Learning"},
-                {code: "CSE 465", name: "Pattern Recognition and Neural Network"}, {code: "CSE 467", name: "Digital Image Processing"},
-                {code: "CSE 470", name: "Theory of Fuzzy Systems"}, {code: "CSE 419", name: "Data Mining"}
-            ]},
-            {track: "Bioinformatics", courses: [
-                {code: "CSE 446", name: "Introduction to Bioinformatics"}, {code: "CSE 447", name: "Molecular Biology"},
-                {code: "CSE 448", name: "Genome Sequence & Analysis"}, {code: "CSE 449", name: "Structural Bioinformatics"},
-                {code: "CSE 442", name: "Micro Array Bioinformatics"}, {code: "CSE 496", name: "Special Topics"}
-            ]}
+            {track: "Algorithms & Computation", courses: [{code: "CSE 401", name: "Advanced Programming Techniques"}, {code: "CSE 417", name: "Numerical Methods"}, {code: "CSE 418", name: "Computer Graphics"}, {code: "CSE 426", name: "Compiler Constructions"}, {code: "CSE 273", name: "Theory of Computation"}, {code: "CSE 491", name: "Special Topics"}]},
+            {track: "Software Engineering", courses: [{code: "CSE 411", name: "Advanced Database Systems"}, {code: "CSE 427", name: "Software Quality Assurance & Testing"}, {code: "CSE 428", name: "Software Process Management"}, {code: "CSE 429", name: "Software System Architecture"}, {code: "CSE 492", name: "Special Topics"}]},
+            {track: "Networks", courses: [{code: "CSE 422", name: "Modelling and Simulation"}, {code: "CSE 438", name: "Data Communication & Network"}, {code: "CSE 482", name: "Internet and Web Technology"}, {code: "CSE 485", name: "Digital Signal Processing"}, {code: "CSE 486", name: "Mobile and Wireless Application Development"}, {code: "CSE 493", name: "Special Topics"}]},
+            {track: "Computer Architecture & VLSI", courses: [{code: "CSE 433", name: "Advanced Architecture"}, {code: "CSE 435", name: "Introduction to VLSI Design"}, {code: "CSE 413", name: "Verilog HDL"}, {code: "CSE 414", name: "Advanced Chip Design Methodology"}, {code: "CSE 415", name: "VLSI Chip Testing"}, {code: "CSE 494", name: "Special Topics"}]},
+            {track: "Artificial Intelligence", courses: [{code: "CSE 440", name: "Artificial Intelligence"}, {code: "CSE 445", name: "Machine Learning"}, {code: "CSE 465", name: "Pattern Recognition and Neural Network"}, {code: "CSE 467", name: "Digital Image Processing"}, {code: "CSE 470", name: "Theory of Fuzzy Systems"}, {code: "CSE 419", name: "Data Mining"}]},
+            {track: "Bioinformatics", courses: [{code: "CSE 446", name: "Introduction to Bioinformatics"}, {code: "CSE 447", name: "Molecular Biology"}, {code: "CSE 448", name: "Genome Sequence & Analysis"}, {code: "CSE 449", name: "Structural Bioinformatics"}, {code: "CSE 442", name: "Micro Array Bioinformatics"}, {code: "CSE 496", name: "Special Topics"}]}
         ]
     },
     "EEE": {
@@ -991,7 +609,6 @@ const databases = {
             {title: "Open Elective", desc: "One 3-credit course from an eligible discipline.", cr: 3}
         ],
         courses: [
-            /* UNIVERSITY CORE */
             {code:"ENG 102", name:"Introduction to Composition", cr:3, cat:"university"},
             {code:"ENG 103", name:"Intermediate Composition", cr:3, cat:"university"},
             {code:"ENG 111", name:"Public Speaking", cr:3, cat:"university"},
@@ -1002,8 +619,6 @@ const databases = {
             {code:"ECO 101/104", name:"Microeconomics / Macroeconomics", cr:3, cat:"university"},
             {code:"POL 101/104", name:"Political Science / Governance", cr:3, cat:"university"},
             {code:"SOC/ANT/ENV/GEO 101", name:"Social Science Elective", cr:3, cat:"university"},
-
-            /* MATH / SCIENCE (SEPS) */
             {code:"MAT 116", name:"Pre-Calculus", cr:0, cat:"math"},
             {code:"MAT 120", name:"Calculus I", cr:3, cat:"math"},
             {code:"MAT 130", name:"Calculus II", cr:3, cat:"math"},
@@ -1018,8 +633,6 @@ const databases = {
             {code:"EEE 452", name:"Engineering Economics", cr:3, cat:"other"},
             {code:"EEE 154", name:"Engineering Drawing", cr:1, cat:"other"},
             {code:"CSE 115 + L", name:"Programming Language I with Lab", cr:4, cat:"other"},
-
-            /* EEE MAJOR CORE */
             {code:"EEE 141 + L", name:"Electrical Circuits I with Lab", cr:4, cat:"core"},
             {code:"EEE 111 + L", name:"Analog Electronics I with Lab", cr:4, cat:"core"},
             {code:"EEE 211 + L", name:"Digital Logic design with Lab", cr:3, cat:"core"},
@@ -1032,47 +645,24 @@ const databases = {
             {code:"EEE 342 + L", name:"Control Engineering with Lab", cr:4, cat:"core"},
             {code:"EEE 362 + L", name:"Power Systems with Lab", cr:3, cat:"core"},
             {code:"EEE 363 + L", name:"Electrical Machines with Lab", cr:4, cat:"core"},
-
-            /* CAPSTONE & INTERNSHIP */
             {code:"EEE 299", name:"Junior Design Project I", cr:1, cat:"other"},
             {code:"EEE 498R", name:"Internship", cr:1, cat:"other"},
             {code:"EEE 499A", name:"Senior Design Project I", cr:1.5, cat:"other"},
             {code:"EEE 499B", name:"Senior Design Project II", cr:1.5, cat:"other"}
         ],
         electives: [
-            {track: "Solid State Electronics", courses: [
-                {code: "EEE 410", name: "Semiconductor Devices and Technology"}, {code: "EEE 411", name: "Introduction to VLSI Design"},
-                {code: "EEE 413", name: "Verilog HDL"}, {code: "EEE 414", name: "Advanced VLSI Chip Design"},
-                {code: "EEE 415", name: "CMOS Analog Circuit Design"}, {code: "EEE 491", name: "Special Topics"}
-            ]},
-            {track: "Power System Engineering", courses: [
-                {code: "EEE 461", name: "Power System Operations & Reliability"}, {code: "EEE 462", name: "Switchgear and Protection"},
-                {code: "EEE 464", name: "Power Stations"}, {code: "EEE 465", name: "High Voltage Engineering"},
-                {code: "EEE 468", name: "Sustainable Energy Technology Systems"}, {code: "EEE 492", name: "Special Topics"}
-            ]},
-            {track: "Communications Engineering", courses: [
-                {code: "EEE 422", name: "Principles of Digital Communications"}, {code: "EEE 424", name: "Mobile and Wireless Communication System"},
-                {code: "EEE 426", name: "Fiber Optic Communication System"}, {code: "EEE 427", name: "Satellite Communication System"},
-                {code: "EEE 428", name: "RF and Microwave Engineering"}, {code: "EEE 493", name: "Special Topics"}
-            ]},
-            {track: "Robotics and Intelligence System", courses: [
-                {code: "EEE 453", name: "Microprocessor Interface and Embedded System"}, {code: "EEE 432", name: "Artificial Intelligence"},
-                {code: "EEE 433", name: "Pattern Recognition and Neural Network"}, {code: "EEE 436", name: "Theory of Fuzzy Systems"},
-                {code: "EEE 468", name: "Computer Vision"}, {code: "EEE 494", name: "Special Topics"}
-            ]},
-            {track: "Telecommunication System", courses: [
-                {code: "EEE 331", name: "Data Communications & Networks"}, {code: "EEE 421", name: "Stochastic Signals and Systems"},
-                {code: "EEE 423", name: "Principles of Telecommunication Network"}, {code: "EEE 451", name: "Telecommunications Business and Management"},
-                {code: "EEE 471", name: "Digital Signal Processing"}, {code: "EEE 495", name: "Special Topics"}
-            ]}
+            {track: "Solid State Electronics", courses: [{code: "EEE 410", name: "Semiconductor Devices and Technology"}, {code: "EEE 411", name: "Introduction to VLSI Design"}, {code: "EEE 413", name: "Verilog HDL"}, {code: "EEE 414", name: "Advanced VLSI Chip Design"}, {code: "EEE 415", name: "CMOS Analog Circuit Design"}, {code: "EEE 491", name: "Special Topics"}]},
+            {track: "Power System Engineering", courses: [{code: "EEE 461", name: "Power System Operations & Reliability"}, {code: "EEE 462", name: "Switchgear and Protection"}, {code: "EEE 464", name: "Power Stations"}, {code: "EEE 465", name: "High Voltage Engineering"}, {code: "EEE 468", name: "Sustainable Energy Technology Systems"}, {code: "EEE 492", name: "Special Topics"}]},
+            {track: "Communications Engineering", courses: [{code: "EEE 422", name: "Principles of Digital Communications"}, {code: "EEE 424", name: "Mobile and Wireless Communication System"}, {code: "EEE 426", name: "Fiber Optic Communication System"}, {code: "EEE 427", name: "Satellite Communication System"}, {code: "EEE 428", name: "RF and Microwave Engineering"}, {code: "EEE 493", name: "Special Topics"}]},
+            {track: "Robotics and Intelligence System", courses: [{code: "EEE 453", name: "Microprocessor Interface and Embedded System"}, {code: "EEE 432", name: "Artificial Intelligence"}, {code: "EEE 433", name: "Pattern Recognition and Neural Network"}, {code: "EEE 436", name: "Theory of Fuzzy Systems"}, {code: "EEE 468", name: "Computer Vision"}, {code: "EEE 494", name: "Special Topics"}]},
+            {track: "Telecommunication System", courses: [{code: "EEE 331", name: "Data Communications & Networks"}, {code: "EEE 421", name: "Stochastic Signals and Systems"}, {code: "EEE 423", name: "Principles of Telecommunication Network"}, {code: "EEE 451", name: "Telecommunications Business and Management"}, {code: "EEE 471", name: "Digital Signal Processing"}, {code: "EEE 495", name: "Special Topics"}]}
         ]
     }
 };
 
 /* =========================================================
-   STATE VARIABLES
+   STATE VARIABLES & DEPT INIT
    ========================================================= */
-
 let currentDept = null;
 let activeCourses = [];
 let fullRetakeCatalog = []; 
@@ -1083,88 +673,46 @@ let currentFilter = "all";
 const TOTAL_CREDITS = 130;
 const FEE_PER_CREDIT = 6500;
 
-/* =========================================================
-   DEPARTMENT SELECTION & INITIALIZATION
-   ========================================================= */
-
 function selectDepartment(dept) {
     playClickSound(); 
     currentDept = dept;
     document.getElementById('deptModal').style.display = 'none';
     document.getElementById('mainApp').style.display = 'block';
-    
-    // Update UI labels
     document.getElementById('heroBadge').textContent = `NORTH SOUTH UNIVERSITY • ${dept === 'CSE' ? 'BSCSE' : 'BSEEE'}`;
     document.getElementById('electiveHeaderTitle').textContent = `${dept} Specialized Electives`;
     document.getElementById('majorFilterBtn').textContent = `${dept} Major Core`;
 
-    // Load Department Data
     activeCourses = [...databases[dept].courses];
     activeCourses.sort((a, b) => a.code.localeCompare(b.code));
-
-    // Load Local Storage
     completed = new Set(JSON.parse(localStorage.getItem(`rtnc_completed_${dept}`) || '[]'));
     retakeCourses = new Set(JSON.parse(localStorage.getItem(`rtnc_retakes_${dept}`) || '[]'));
     
-    // Resume saved plan history if it exists
     const savedPlanData = localStorage.getItem(`rtnc_plan_${dept}`);
-    if (savedPlanData) {
-        currentPlan = JSON.parse(savedPlanData);
-    }
+    if (savedPlanData) currentPlan = JSON.parse(savedPlanData);
 
-    renderRequirements();
-    renderElectiveTracks();
-    renderCourses();
-    initRetakeDropdown();
-    updateElectiveStatus();
-    updateDashboard();
-
-    renderOpenElective();
+    renderRequirements(); renderElectiveTracks(); renderCourses();
+    initRetakeDropdown(); updateElectiveStatus(); updateDashboard();
+    renderOpenElective(); initFire(); renderPlanHTML();
     
-    // Start fire background
-    initFire();
-    
-    // Render restored plan
-    renderPlanHTML();
-    
-    // Attach fluid glassmorphism script to all new elements
     setTimeout(initFluidHover, 100);
 }
 
-/* =========================================================
-   DYNAMIC RENDERERS
-   ========================================================= */
-
 function renderRequirements() {
     const grid = document.getElementById("reqGrid");
-    grid.innerHTML = databases[currentDept].reqCards.map(req => `
-        <div class="req-card fluid-box">
-            <h3>${req.title}</h3>
-            <p>${req.desc}</p>
-            <div class="req-number">${req.cr} cr</div>
-        </div>
-    `).join("");
+    grid.innerHTML = databases[currentDept].reqCards.map(req => `<div class="req-card fluid-box"><h3>${req.title}</h3><p>${req.desc}</p><div class="req-number">${req.cr} cr</div></div>`).join("");
 }
 
 function renderElectiveTracks() {
     const container = document.getElementById("electiveTracksContainer");
     let html = "";
-
-    databases[currentDept].electives.forEach((track, tIdx) => {
+    databases[currentDept].electives.forEach((track) => {
         html += `<div class="track"><div class="track-title">${track.track}</div><div class="elective-option-grid">`;
-        track.courses.forEach((course, cIdx) => {
+        track.courses.forEach((course) => {
             const isSelected = completed.has(course.code) ? "selected" : "";
-            html += `
-                <div class="elective-option fluid-box ${isSelected}" onclick="handleElectiveToggle('${course.code}')">
-                    <div>
-                        ${course.code} — ${course.name}<small>3 Credits</small>
-                    </div>
-                </div>
-            `;
+            html += `<div class="elective-option fluid-box ${isSelected}" onclick="handleElectiveToggle('${course.code}')"><div>${course.code} — ${course.name}<small>3 Credits</small></div></div>`;
         });
         html += `</div></div>`;
     });
-    
     container.innerHTML = html;
     setTimeout(initFluidHover, 100);
 }
@@ -1172,94 +720,53 @@ function renderElectiveTracks() {
 function renderCourses(filter = "all") {
     const grid = document.getElementById("courseGrid");
     grid.innerHTML = "";
-
-    activeCourses
-        .filter(c => filter === "all" || c.cat === filter)
-        .forEach(course => {
-            const card = document.createElement("div");
-            card.className = "course-card fluid-box " + (completed.has(course.code) ? "completed" : "");
-            
-            card.innerHTML = `
-                <div class="course-code">${course.code}</div>
-                <div class="course-name">${course.name}</div>
-                <div class="course-credit">
-                    ${course.cr} Credit${course.cr === 1 ? "" : "s"}
-                    ${course.code.includes("+ L") ? `<span class="lab-note"> • Lab included</span>` : ""}
-                </div>
-            `;
-
-            card.onclick = () => toggleCourse(course.code);
-            grid.appendChild(card);
-        });
-        
+    activeCourses.filter(c => filter === "all" || c.cat === filter).forEach(course => {
+        const card = document.createElement("div");
+        card.className = "course-card fluid-box " + (completed.has(course.code) ? "completed" : "");
+        card.innerHTML = `<div class="course-code">${course.code}</div><div class="course-name">${course.name}</div><div class="course-credit">${course.cr} Credit${course.cr === 1 ? "" : "s"} ${course.code.includes("+ L") ? `<span class="lab-note"> • Lab included</span>` : ""}</div>`;
+        card.onclick = () => toggleCourse(course.code);
+        grid.appendChild(card);
+    });
     setTimeout(initFluidHover, 100);
 }
 
 function filterCourses(filter, button) {
-    playClickSound(); 
-    currentFilter = filter;
+    playClickSound(); currentFilter = filter;
     document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
-    renderCourses(filter);
+    button.classList.add("active"); renderCourses(filter);
 }
 
 function toggleCourse(code) {
     playClickSound(); 
-    if (completed.has(code)) {
-        completed.delete(code);
-    } else {
-        completed.add(code);
-    }
-    saveState();
-    renderCourses(currentFilter);
-    updateDashboard();
+    if (completed.has(code)) completed.delete(code); else completed.add(code);
+    saveState(); renderCourses(currentFilter); updateDashboard();
 }
 
 function handleElectiveToggle(code) {
+    playClickSound(); 
     if (completed.has(code)) {
-        playClickSound(); 
         completed.delete(code);
     } else {
-        const specializedCount = getSpecializedCredits() / 3;
-        if (specializedCount >= 3) {
-            alert("You can only select up to 3 specialized electives.");
-            return;
-        }
-        playClickSound(); 
+        if ((getSpecializedCredits() / 3) >= 3) { alert("You can only select up to 3 specialized electives."); return; }
         completed.add(code);
     }
-    saveState();
-    renderElectiveTracks();
-    updateElectiveStatus();
-    updateDashboard();
+    saveState(); renderElectiveTracks(); updateElectiveStatus(); updateDashboard();
 }
 
 function updateElectiveStatus() {
-    const selected = getSpecializedCredits() / 3;
-    document.getElementById("electiveStatus").textContent = `${selected} / 3 selected`;
+    document.getElementById("electiveStatus").textContent = `${getSpecializedCredits() / 3} / 3 selected`;
 }
 
 function toggleOpenElective() {
     playClickSound(); 
-    if (completed.has("OPEN ELECTIVE")) {
-        completed.delete("OPEN ELECTIVE");
-    } else {
-        completed.add("OPEN ELECTIVE");
-    }
-    saveState();
-    renderOpenElective();
-    updateDashboard();
+    if (completed.has("OPEN ELECTIVE")) completed.delete("OPEN ELECTIVE"); else completed.add("OPEN ELECTIVE");
+    saveState(); renderOpenElective(); updateDashboard();
 }
 
 function renderOpenElective() {
     const div = document.getElementById("openElectiveDiv");
-    if (completed.has("OPEN ELECTIVE")) {
-        div.classList.add("selected");
-        document.getElementById("openStatus").textContent = "Completed";
-    } else {
-        div.classList.remove("selected");
-        document.getElementById("openStatus").textContent = "Not completed";
-    }
+    if (completed.has("OPEN ELECTIVE")) { div.classList.add("selected"); document.getElementById("openStatus").textContent = "Completed"; }
+    else { div.classList.remove("selected"); document.getElementById("openStatus").textContent = "Not completed"; }
 }
 
 function saveState() {
@@ -1267,426 +774,174 @@ function saveState() {
     localStorage.setItem(`rtnc_retakes_${currentDept}`, JSON.stringify([...retakeCourses]));
 }
 
-/* =========================================================
-   RETAKE COURSE UI (WITH SPLIT THEORY & LABS)
-   ========================================================= */
-
 function buildRetakeCatalog() {
     fullRetakeCatalog = [];
     activeCourses.forEach(c => {
         if (c.code.includes("+ L")) {
-            let baseCode = c.code.split(" + ")[0];
-            let baseName = c.name.replace(" with Lab", "").replace(" With Lab", "");
-            
+            let baseCode = c.code.split(" + ")[0]; let baseName = c.name.replace(" with Lab", "").replace(" With Lab", "");
             if (c.cr >= 4) {
-                // Split 4+ credit courses into Theory (3) and Lab (1) - no combined option
                 fullRetakeCatalog.push({ code: baseCode, name: baseName + " (Theory Only)", cr: c.cr - 1, type: "normal", sortKey: baseCode + "1" });
                 fullRetakeCatalog.push({ code: baseCode + "L", name: baseName + " (Lab Only)", cr: 1, type: "normal", sortKey: baseCode + "2" });
             } else {
-                // 3 credit courses with 0-credit labs must be taken combined
                 fullRetakeCatalog.push({ code: c.code, name: c.name + " (Combined)", cr: c.cr, type: "normal", sortKey: baseCode + "1" });
             }
         } else {
-            let t = "normal";
-            if(c.code.includes("499A")) t = "capstoneA";
-            if(c.code.includes("499B")) t = "capstoneB";
+            let t = "normal"; if(c.code.includes("499A")) t = "capstoneA"; if(c.code.includes("499B")) t = "capstoneB";
             fullRetakeCatalog.push({ code: c.code, name: c.name, cr: c.cr, type: t, sortKey: c.code });
         }
     });
-    
-    databases[currentDept].electives.forEach(track => {
-        track.courses.forEach(c => {
-            fullRetakeCatalog.push({ code: c.code, name: c.name, cr: 3, type: "elective", sortKey: c.code });
-        });
-    });
-
-    // Ensure theory and lab appear together cleanly in the dropdown
+    databases[currentDept].electives.forEach(track => { track.courses.forEach(c => { fullRetakeCatalog.push({ code: c.code, name: c.name, cr: 3, type: "elective", sortKey: c.code }); }); });
     fullRetakeCatalog.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 }
 
 function initRetakeDropdown() {
     buildRetakeCatalog();
-    const select = document.getElementById("retakeSelect");
-    select.innerHTML = '<option value="">+ Add a Course to Retake</option>';
-    
-    fullRetakeCatalog.forEach(c => {
-        const opt = document.createElement("option");
-        opt.value = c.code;
-        opt.textContent = `${c.code} — ${c.name} (${c.cr} cr)`;
-        select.appendChild(opt);
-    });
-
+    const select = document.getElementById("retakeSelect"); select.innerHTML = '<option value="">+ Add a Course to Retake</option>';
+    fullRetakeCatalog.forEach(c => { const opt = document.createElement("option"); opt.value = c.code; opt.textContent = `${c.code} — ${c.name} (${c.cr} cr)`; select.appendChild(opt); });
     renderRetakeList();
 }
 
 function addRetakeCourse() {
-    playClickSound(); 
-    const select = document.getElementById("retakeSelect");
-    const code = select.value;
-    if (code && !retakeCourses.has(code)) {
-        retakeCourses.add(code);
-        saveState();
-        renderRetakeList();
-    }
+    playClickSound(); const select = document.getElementById("retakeSelect"); const code = select.value;
+    if (code && !retakeCourses.has(code)) { retakeCourses.add(code); saveState(); renderRetakeList(); }
     select.value = "";
 }
 
-function removeRetake(code) {
-    playClickSound(); 
-    retakeCourses.delete(code);
-    saveState();
-    renderRetakeList();
-}
+function removeRetake(code) { playClickSound(); retakeCourses.delete(code); saveState(); renderRetakeList(); }
 
 function renderRetakeList() {
-    const container = document.getElementById("retakeListContainer");
-    container.innerHTML = "";
+    const container = document.getElementById("retakeListContainer"); container.innerHTML = "";
     retakeCourses.forEach(code => {
-        const badge = document.createElement("div");
-        badge.className = "retake-badge fluid-box";
-        badge.innerHTML = `Retake: ${code} <button onclick="removeRetake('${code}')">×</button>`;
-        container.appendChild(badge);
+        const badge = document.createElement("div"); badge.className = "retake-badge fluid-box";
+        badge.innerHTML = `Retake: ${code} <button onclick="removeRetake('${code}')">×</button>`; container.appendChild(badge);
     });
 }
 
-/* =========================================================
-   DASHBOARD
-   ========================================================= */
-
-function getSpecializedCredits() {
-    let count = 0;
-    databases[currentDept].electives.forEach(track => {
-        track.courses.forEach(c => {
-            if (completed.has(c.code)) count++;
-        });
-    });
-    return count * 3;
-}
-
-function getOpenElectiveCredits() {
-    return completed.has("OPEN ELECTIVE") ? 3 : 0;
-}
-
-function getNormalCompletedCredits() {
-    let total = 0;
-    completed.forEach(code => {
-        const course = activeCourses.find(c => c.code === code);
-        if (course) total += course.cr;
-    });
-    return total;
-}
+function getSpecializedCredits() { let count = 0; databases[currentDept].electives.forEach(t => { t.courses.forEach(c => { if (completed.has(c.code)) count++; }); }); return count * 3; }
+function getOpenElectiveCredits() { return completed.has("OPEN ELECTIVE") ? 3 : 0; }
+function getNormalCompletedCredits() { let total = 0; completed.forEach(code => { const course = activeCourses.find(c => c.code === code); if (course) total += course.cr; }); return total; }
 
 function updateDashboard() {
-    const normalCredits = getNormalCompletedCredits();
-    const specializedCredits = getSpecializedCredits();
-    const openCredits = getOpenElectiveCredits();
-
-    const total = Math.min(normalCredits + specializedCredits + openCredits, TOTAL_CREDITS);
-    const remaining = Math.max(TOTAL_CREDITS - total, 0);
+    const total = Math.min(getNormalCompletedCredits() + getSpecializedCredits() + getOpenElectiveCredits(), TOTAL_CREDITS);
     const progress = ((total / TOTAL_CREDITS) * 100).toFixed(1);
-
     document.getElementById("completedCredits").textContent = Number.isInteger(total) ? total : total.toFixed(1);
-    document.getElementById("remainingCredits").textContent = Number.isInteger(remaining) ? remaining : remaining.toFixed(1);
+    document.getElementById("remainingCredits").textContent = Number.isInteger(Math.max(TOTAL_CREDITS - total, 0)) ? Math.max(TOTAL_CREDITS - total, 0) : Math.max(TOTAL_CREDITS - total, 0).toFixed(1);
     document.getElementById("degreeProgress").textContent = progress + "%";
     document.getElementById("progressText").textContent = `${Number.isInteger(total) ? total : total.toFixed(1)} / ${TOTAL_CREDITS} credits`;
     document.getElementById("progressBar").style.width = progress + "%";
 }
 
-/* =========================================================
-   PLANNER (RDS EXACT UI GENERATION & PERSISTENCE)
-   ========================================================= */
-
 function generateNewPlanner() {
     playSuccessSound(); 
-
     const semesterCount = Number(document.getElementById("semesterCount").value);
-
-    // 1. Gather primary courses
-    let remainingCourses = activeCourses
-        .filter(course => !completed.has(course.code))
-        .map(course => {
-            let t = "normal";
-            if(course.code.includes("499A")) t = "capstoneA";
-            if(course.code.includes("499B")) t = "capstoneB";
-            return { code: course.code, name: course.name, cr: course.cr, type: t };
-        });
-
-    // 2. Add Retake Courses explicitly from the fullRetakeCatalog
+    let remainingCourses = activeCourses.filter(c => !completed.has(c.code)).map(c => {
+        let t = "normal"; if(c.code.includes("499A")) t = "capstoneA"; if(c.code.includes("499B")) t = "capstoneB";
+        return { code: c.code, name: c.name, cr: c.cr, type: t };
+    });
     retakeCourses.forEach(rCode => {
         const rc = fullRetakeCatalog.find(c => c.code === rCode);
-        if(rc) {
-            remainingCourses.push({
-                code: rc.code,
-                name: rc.name + " (Retake)",
-                cr: rc.cr,
-                type: rc.type || "normal"
-            });
-        }
+        if(rc) remainingCourses.push({ code: rc.code, name: rc.name + " (Retake)", cr: rc.cr, type: rc.type || "normal" });
     });
 
-    const specializedSelected = getSpecializedCredits() / 3;
-    const specializedRemaining = 3 - specializedSelected;
+    remainingCourses = remainingCourses.filter(c => !c.code.match(/^(CSE|EEE) 4/) || retakeCourses.has(c.code) || c.type === "capstoneA" || c.type === "capstoneB" || c.type === "elective" || c.code === "EEE 452" || c.code.includes("498R"));
+    for (let i = 1; i <= (3 - (getSpecializedCredits() / 3)); i++) remainingCourses.push({ code: `ELECTIVE ${i}`, name: "Specialized Elective", cr: 3, type: "elective" });
+    if (!completed.has("OPEN ELECTIVE")) remainingCourses.push({ code: "OPEN ELECTIVE", name: "Open Elective", cr: 3, type: "open" });
 
-    // Filter out advanced courses automatically unless explicitly needed
-    remainingCourses = remainingCourses.filter(course => 
-        !course.code.match(/^(CSE|EEE) 4/) || 
-        retakeCourses.has(course.code) || 
-        course.type === "capstoneA" || 
-        course.type === "capstoneB" ||
-        course.type === "elective" ||
-        course.code === "EEE 452" ||
-        course.code.includes("498R")
-    );
-
-    // Add placeholder electives
-    for (let i = 1; i <= specializedRemaining; i++) {
-        remainingCourses.push({ code: `ELECTIVE ${i}`, name: "Specialized Elective", cr: 3, type: "elective" });
-    }
-
-    if (!completed.has("OPEN ELECTIVE")) {
-        remainingCourses.push({ code: "OPEN ELECTIVE", name: "Open Elective", cr: 3, type: "open" });
-    }
-
-    // Deduplicate
-    const unique = [];
-    const seen = new Set();
-    remainingCourses.forEach(course => {
-        if (!seen.has(course.code)) {
-            seen.add(course.code);
-            unique.push(course);
-        }
-    });
+    const unique = []; const seen = new Set();
+    remainingCourses.forEach(c => { if (!seen.has(c.code)) { seen.add(c.code); unique.push(c); } });
     remainingCourses = unique;
 
-    // Build empty semesters array
-    const newPlan = [];
-    const seasonNames = ["Fall", "Spring", "Summer"];
-    let currentYear = new Date().getFullYear();
-    let startSeasonIdx = 0; // Starts at Fall assuming standard cycle
-    
-    for (let i = 0; i < semesterCount; i++) {
-        let season = seasonNames[(startSeasonIdx + i) % 3];
-        let year = currentYear + Math.floor((startSeasonIdx + i) / 3);
-        newPlan.push({ name: `${season} ${year}`, courses: [], credits: 0 });
-    }
+    const newPlan = []; const seasonNames = ["Fall", "Spring", "Summer"]; let currentYear = new Date().getFullYear();
+    for (let i = 0; i < semesterCount; i++) newPlan.push({ name: `${seasonNames[i % 3]} ${currentYear + Math.floor(i / 3)}`, courses: [], credits: 0 });
 
-    // Pin Capstones
     const capstoneB = remainingCourses.find(c => c.type === "capstoneB");
-    if (capstoneB && newPlan.length > 0) {
-        newPlan[newPlan.length - 1].courses.push(capstoneB);
-        newPlan[newPlan.length - 1].credits += capstoneB.cr;
-        remainingCourses = remainingCourses.filter(c => c.type !== "capstoneB");
-    }
-
+    if (capstoneB && newPlan.length > 0) { newPlan[newPlan.length - 1].courses.push(capstoneB); newPlan[newPlan.length - 1].credits += capstoneB.cr; remainingCourses = remainingCourses.filter(c => c.type !== "capstoneB"); }
     const capstoneA = remainingCourses.find(c => c.type === "capstoneA");
-    if (capstoneA && newPlan.length > 0) {
-        let targetIdx = Math.max(0, newPlan.length - (newPlan.length > 1 ? 2 : 1));
-        newPlan[targetIdx].courses.push(capstoneA);
-        newPlan[targetIdx].credits += capstoneA.cr;
-        remainingCourses = remainingCourses.filter(c => c.type !== "capstoneA");
-    }
+    if (capstoneA && newPlan.length > 0) { let targetIdx = Math.max(0, newPlan.length - (newPlan.length > 1 ? 2 : 1)); newPlan[targetIdx].courses.push(capstoneA); newPlan[targetIdx].credits += capstoneA.cr; remainingCourses = remainingCourses.filter(c => c.type !== "capstoneA"); }
 
-    // Lowest-bucket distribution for balance
     for (const course of remainingCourses) {
         const target = newPlan.reduce((prev, curr) => (prev.credits < curr.credits) ? prev : curr);
-        target.courses.push(course);
-        target.credits += course.cr;
+        target.courses.push(course); target.credits += course.cr;
     }
 
-    currentPlan = newPlan;
-    savePlanState();
-    renderPlanHTML();
+    currentPlan = newPlan; savePlanState(); renderPlanHTML();
 }
 
 function renderPlanHTML() {
-    const list = document.getElementById("semesterList");
-    list.innerHTML = "";
+    const list = document.getElementById("semesterList"); list.innerHTML = "";
+    if (currentPlan.length === 0) { list.innerHTML = `<div class="fluid-box" style="padding: 20px; color:var(--text); text-align:center; border-radius:12px;">No routine generated. Click 'Generate My Graduation Plan'.</div>`; return; }
 
-    if (currentPlan.length === 0) {
-        list.innerHTML = `<div class="fluid-box" style="padding: 20px; color:var(--text); text-align:center; border-radius:12px;">No routine generated. Click 'Generate My Graduation Plan'.</div>`;
-        return;
-    }
-
-    currentPlan.forEach((semester, index) => {
-        let leftRows = "";
-        let semFeeTotal = 9500; // Base Fee set to 9500
-        let crTotal = 0;
-
-        if (semester.courses.length === 0) {
-            leftRows = `<tr><td colspan="5" style="text-align:center; padding:15px; color:var(--text);">No courses scheduled. Drop courses here.</td></tr>`;
-        } else {
+    currentPlan.forEach((semester) => {
+        let leftRows = ""; let semFeeTotal = 9500; let crTotal = 0;
+        if (semester.courses.length === 0) { leftRows = `<tr><td colspan="5" style="text-align:center; padding:15px; color:var(--text);">No courses scheduled. Drop courses here.</td></tr>`; } 
+        else {
             leftRows = semester.courses.map((course) => {
-                const fee = course.cr * FEE_PER_CREDIT;
-                semFeeTotal += fee;
-                crTotal += course.cr;
-                const codeClean = course.code.replace(" + L", "L").replace(/\s/g, "");
-                
-                // NO FLUID BOX HERE: Keeps the table strictly aligned
-                return `
-                <tr class="plan-course" draggable="true" ondragstart="dragStart(event)" ondragend="dragEnd(event)" data-code="${course.code}" data-cr="${course.cr}" data-name="${course.name}" data-type="${course.type}">
+                const fee = course.cr * FEE_PER_CREDIT; semFeeTotal += fee; crTotal += course.cr;
+                return `<tr class="plan-course" draggable="true" ondragstart="dragStart(event)" ondragend="dragEnd(event)" data-code="${course.code}" data-cr="${course.cr}" data-name="${course.name}" data-type="${course.type}">
                     <td class="check-icon" style="text-align: center;">✔</td>
-                    <td style="font-weight:bold; text-align: left;">${codeClean}</td>
+                    <td style="font-weight:bold; text-align: left;">${course.code.replace(" + L", "L").replace(/\s/g, "")}</td>
                     <td style="text-align: center;">${course.cr.toFixed(1)}</td>
                     <td class="fee-col" style="text-align: right;">${fee}</td>
                     <td class="delete-icon" style="text-align: center;" onclick="removeCourseFromPlan(this)">✖</td>
-                </tr>
-                `;
+                </tr>`;
             }).join("");
         }
 
-        const tableHTML = `
+        const wrapper = document.createElement('div'); list.appendChild(wrapper);
+        wrapper.outerHTML = `
             <div class="rds-sem-block semester-card fluid-box" style="margin-bottom: 10px;">
                 <div class="rds-sem-title">${semester.name}</div>
                 <table class="semester-table" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropCourse(event)">
-                    <colgroup>
-                        <col style="width: 60px;">
-                        <col style="width: auto;">
-                        <col style="width: 70px;">
-                        <col style="width: 90px;">
-                        <col style="width: 40px;">
-                    </colgroup>
-                    <thead class="rds-thead">
-                        <tr>
-                            <th style="text-align: center;">Saved</th>
-                            <th style="text-align: left;">Course</th>
-                            <th style="text-align: center;">Credit</th>
-                            <th style="text-align: right;">Fees</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-body">
-                        ${leftRows}
-                    </tbody>
+                    <colgroup><col style="width: 60px;"><col style="width: auto;"><col style="width: 70px;"><col style="width: 90px;"><col style="width: 40px;"></colgroup>
+                    <thead class="rds-thead"><tr><th style="text-align: center;">Saved</th><th style="text-align: left;">Course</th><th style="text-align: center;">Credit</th><th style="text-align: right;">Fees</th><th></th></tr></thead>
+                    <tbody class="table-body">${leftRows}</tbody>
                     <tfoot class="fee-row">
-                        <tr>
-                            <td colspan="2" style="text-align:right; color:var(--primary); font-weight:bold;">
-                                Total Credits: <span class="sem-total-cr">${crTotal.toFixed(1)}</span>
-                            </td>
-                            <td style="text-align:right; color:var(--muted); white-space:nowrap;">Activity Fee</td>
-                            <td style="text-align:right; color:var(--text);">9500</td>
-                            <td></td>
-                        </tr>
-                        <tr style="font-weight:bold; color:var(--text);">
-                            <td colspan="3" style="text-align:right;">Total Cost</td>
-                            <td class="sem-total-fee" style="text-align:right; color:var(--primary); font-size:14px;">${semFeeTotal}</td>
-                            <td></td>
-                        </tr>
+                        <tr><td colspan="2" style="text-align:right; color:var(--primary); font-weight:bold;">Total Credits: <span class="sem-total-cr">${crTotal.toFixed(1)}</span></td><td style="text-align:right; color:var(--muted); white-space:nowrap;">Activity Fee</td><td style="text-align:right; color:var(--text);">9500</td><td></td></tr>
+                        <tr style="font-weight:bold; color:var(--text);"><td colspan="3" style="text-align:right;">Total Cost</td><td class="sem-total-fee" style="text-align:right; color:var(--primary); font-size:14px;">${semFeeTotal}</td><td></td></tr>
                     </tfoot>
                 </table>
-                <div class="rds-actions-container">
-                    <div class="rds-buttons">
-                        <button class="rds-btn fluid-box">Save</button>
-                        <button class="rds-btn fluid-box">Discard Changes</button>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        const wrapper = document.createElement('div');
-        list.appendChild(wrapper);
-        wrapper.outerHTML = tableHTML;
+                <div class="rds-actions-container"><div class="rds-buttons"><button class="rds-btn fluid-box">Save</button><button class="rds-btn fluid-box">Discard Changes</button></div></div>
+            </div>`;
     });
-    
     setTimeout(initFluidHover, 100);
 }
 
-// Scrapes the HTML table state and saves it back into the master array
 function updatePlanStateFromDOM() {
-    const cards = document.querySelectorAll('.semester-card');
     const newPlan = [];
-    
-    cards.forEach(card => {
-        const semName = card.querySelector('.rds-sem-title').textContent;
-        const rows = card.querySelectorAll('.plan-course');
-        const courses = [];
-        let credits = 0;
-        
-        rows.forEach(row => {
-            const cr = parseFloat(row.dataset.cr);
-            courses.push({
-                code: row.dataset.code,
-                name: row.dataset.name,
-                cr: cr,
-                type: row.dataset.type
-            });
-            credits += cr;
-        });
-        
+    document.querySelectorAll('.semester-card').forEach(card => {
+        const semName = card.querySelector('.rds-sem-title').textContent; const courses = []; let credits = 0;
+        card.querySelectorAll('.plan-course').forEach(row => { const cr = parseFloat(row.dataset.cr); courses.push({ code: row.dataset.code, name: row.dataset.name, cr: cr, type: row.dataset.type }); credits += cr; });
         newPlan.push({ name: semName, courses: courses, credits: credits });
     });
-    
-    currentPlan = newPlan;
-    savePlanState();
-    recalculateSemesterCredits();
+    currentPlan = newPlan; savePlanState(); recalculateSemesterCredits();
 }
 
-function savePlanState() {
-    localStorage.setItem(`rtnc_plan_${currentDept}`, JSON.stringify(currentPlan));
-}
+function savePlanState() { localStorage.setItem(`rtnc_plan_${currentDept}`, JSON.stringify(currentPlan)); }
+function removeCourseFromPlan(btn) { playClickSound(); btn.parentElement.remove(); updatePlanStateFromDOM(); }
 
-function removeCourseFromPlan(btn) {
-    playClickSound(); 
-    btn.parentElement.remove();
-    updatePlanStateFromDOM();
-}
-
-// --- Drag and Drop Handlers ---
 let draggedItem = null;
-
-function dragStart(e) {
-    draggedItem = e.currentTarget;
-    setTimeout(() => e.currentTarget.style.opacity = '0.4', 0);
-}
-
-function dragEnd(e) {
-    e.currentTarget.style.opacity = '1';
-    draggedItem = null;
-}
-
-function dragOver(e) {
-    e.preventDefault(); 
-}
-
-function dragLeave(e) {
-}
-
+function dragStart(e) { draggedItem = e.currentTarget; setTimeout(() => e.currentTarget.style.opacity = '0.4', 0); }
+function dragEnd(e) { e.currentTarget.style.opacity = '1'; draggedItem = null; }
+function dragOver(e) { e.preventDefault(); }
+function dragLeave(e) {}
 function dropCourse(e) {
-    e.preventDefault();
-    let target = e.target;
-    while(target && target.tagName !== 'TABLE') {
-        target = target.parentElement;
-    }
-    
+    e.preventDefault(); let target = e.target;
+    while(target && target.tagName !== 'TABLE') target = target.parentElement;
     if (draggedItem && target) {
         const tbody = target.querySelector('.table-body');
-        if(tbody.querySelector('td[colspan]')) tbody.innerHTML = ""; // Clear empty state placeholder
-        tbody.appendChild(draggedItem);
-        
-        // Triggers the save sequence
-        updatePlanStateFromDOM(); 
+        if(tbody.querySelector('td[colspan]')) tbody.innerHTML = "";
+        tbody.appendChild(draggedItem); updatePlanStateFromDOM(); 
     }
 }
 
 function recalculateSemesterCredits() {
     document.querySelectorAll('.semester-card').forEach(card => {
-        let feeTotal = 9500; // Base Fee set to 9500
-        let crTotal = 0;
-        card.querySelectorAll('.plan-course').forEach(row => {
-            const cr = parseFloat(row.dataset.cr);
-            const fee = cr * FEE_PER_CREDIT;
-            row.querySelector('.fee-col').textContent = fee;
-            feeTotal += fee;
-            crTotal += cr;
-        });
-        
-        const feeEl = card.querySelector('.sem-total-fee');
-        if (feeEl) feeEl.textContent = feeTotal;
-        
-        const crEl = card.querySelector('.sem-total-cr');
-        if (crEl) crEl.textContent = crTotal.toFixed(1);
+        let feeTotal = 9500; let crTotal = 0;
+        card.querySelectorAll('.plan-course').forEach(row => { const cr = parseFloat(row.dataset.cr); const fee = cr * FEE_PER_CREDIT; row.querySelector('.fee-col').textContent = fee; feeTotal += fee; crTotal += cr; });
+        const feeEl = card.querySelector('.sem-total-fee'); if (feeEl) feeEl.textContent = feeTotal;
+        const crEl = card.querySelector('.sem-total-cr'); if (crEl) crEl.textContent = crTotal.toFixed(1);
     });
 }
-
 </script>
 </body>
 </html>
